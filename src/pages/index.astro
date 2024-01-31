@@ -1,16 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import CounterVue from '../components/Counter.vue';
+import CounterPReact from '../components/Counter.jsx';
+import CounterSvelte from '../components/Counter.svelte';
+
 ---
 
 <Layout title="My main page">
-	<main class="container px-2 flex justify-center mt-[50px]">
+	<main class="container mx-auto px-2 flex justify-center my-[50px]">
 		<Card
 			href="https://astro.build/chat/"
 			title="Card"
 			body="My card"
 		/>
+
 	</main>
+
+	<div class="w-full px-2 flex justify-center gap-[50px]">
+		<CounterVue client:visible />
+		<CounterPReact client:visible />
+		<CounterSvelte client:visible />
+		
+	</div>
 
 </Layout>
 
