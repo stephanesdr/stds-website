@@ -1,8 +1,10 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Card from '../../components/Card.astro';
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
 import fetchApi from "../../../lib/strapi";
 import type Project from "../../interfaces/project";
+import { Image } from "astro:assets";
+import img from "../../images/image_s.jpg";
 
 const { slug } = Astro.params;
 
@@ -15,24 +17,37 @@ try {
 		wrappedByList: true,
 		query: {
 			"filters[slug][$eq]": slug || "",
-		}
+		},
 	});
 
-	if(!project) throw new Error('404 - Not Found');
-
+	if (!project) throw new Error("404 - Not Found");
 } catch (error) {
 	return Astro.redirect("/404");
 }
-
 ---
 
 <Layout title="My main page">
-	<main class="container mx-auto px-2 flex justify-center my-[50px]">
-		{project && <Card
-			href={`/projects/${project.attributes.slug}`}
-			title={project.attributes.name}
-			body={project.attributes.description}
-		/> }
+	<main class="container h-screen flex items-center mx-auto px-4 max-w-[600px]">
+		<div>
+			<a href="/" transition:name={`back`} transition:animate={`slide`}>&larr; Back</a>
+			<Image
+				class="w-full mb-[50px]"
+				src={img}
+				alt="A description of my image."
+				transition:name={`image-${project.id}`}
+				transition:animate="none"
+			/>
 
+			{
+				project && (
+					<Card
+						project={project}
+						href={`/projects/${project.attributes.slug}`}
+						title={project.attributes.name}
+						body={project.attributes.description}
+					/>
+				)
+			}
+		</div>
 	</main>
 </Layout>

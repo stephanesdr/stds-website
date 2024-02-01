@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import fetchApi from "../../lib/strapi";
 import type Project from "../interfaces/project";
+import { Image } from 'astro:assets';
+import img from '../images/image_s.jpg';
 
 const projects = await fetchApi<Project[]>({
 	endpoint: "projects",
@@ -11,13 +13,26 @@ const projects = await fetchApi<Project[]>({
 ---
 
 <Layout title="My main page">
-	<main class="container mx-auto px-2 flex justify-center my-[50px]">
+	<main class="container mx-auto px-[1.5rem] max-w-[400px]">
+		
 		{projects && projects.length > 0 && (
-			<ul>
+			<ul class="my-[50px]">
 				{projects.map((project) => (
 					<li>
+						<Image 
+							class="w-full rounded-xl mb-[20px]" 
+							src={img}
+							alt="A description of my image."
+							transition:name={`image-${project.id}`} 
+							transition:animate="none"
+						/>
+
 						<a href={`/projects/${project.attributes.slug}/`}>
-							{project.attributes.name}
+							<span
+								transition:name={`link-${project.id}`}
+								transition:animate="none"
+								
+							>{project.attributes.name}</span>
 						</a>
 					</li>
 				))}
