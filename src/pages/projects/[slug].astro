@@ -1,26 +1,39 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Card from "../../components/Card.astro";
-import fetchApi from "../../../lib/strapi";
 import type Project from "../../interfaces/project";
-import { Image } from "astro:assets";
-import img from "../../images/image_s.jpg";
 
 const { slug } = Astro.params;
 
 let project: Project;
 
 try {
-	project = await fetchApi<Project>({
-		endpoint: "projects",
-		wrappedByKey: "data",
-		wrappedByList: true,
-		query: {
-			"filters[slug][$eq]": slug || "",
-		},
-	});
+	const query = {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({
+			query: `query GetProjectBySlugQuery($slug: String!) {
+				project(where: {slug: $slug}) {
+					id
+					name
+					image {
+						url
+					}
+					description
+					slug
+				}
+			}`,
+            variables: { slug }
+		}),
+	};
+
+	const response = await fetch(import.meta.env.HYGRAPH_ENDPOINT, query);
+	const json = await response.json();
+
+	project = json.data.project;
 
 	if (!project) throw new Error("404 - Not Found");
+
 } catch (error) {
 	return Astro.redirect("/404");
 }
@@ -30,21 +43,22 @@ try {
 	<main class="container h-screen flex items-center mx-auto px-4 max-w-[600px]">
 		<div>
 			<a href="/" transition:name={`back`} transition:animate={`slide`}>&larr; Back</a>
-			<Image
+			
+			{project.image && <img
 				class="w-full mb-[50px]"
-				src={img}
+				src={project.image.url}
 				alt="A description of my image."
 				transition:name={`image-${project.id}`}
 				transition:animate="none"
-			/>
+			/>}
 
 			{
 				project && (
 					<Card
 						project={project}
-						href={`/projects/${project.attributes.slug}`}
-						title={project.attributes.name}
-						body={project.attributes.description}
+						href={`/projects/${project.slug}`}
+						title={project.name}
+						body={project.description}
 					/>
 				)
 			}

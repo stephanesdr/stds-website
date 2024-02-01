@@ -1,15 +1,29 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import fetchApi from "../../lib/strapi";
 import type Project from "../interfaces/project";
-import { Image } from 'astro:assets';
-import img from '../images/image_s.jpg';
 
-const projects = await fetchApi<Project[]>({
-	endpoint: "projects",
-	wrappedByKey: "data",
-});
+const query = {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+      {
+        projects {
+			id
+			name
+			image {
+				url
+			}
+			description
+            slug
+        }
+      }`,
+  }),
+};
 
+const response = await fetch(import.meta.env.HYGRAPH_ENDPOINT, query);
+const json = await response.json();
+const projects: Project[] = json.data.projects;
 ---
 
 <Layout title="My main page">
@@ -18,21 +32,21 @@ const projects = await fetchApi<Project[]>({
 		{projects && projects.length > 0 && (
 			<ul class="my-[50px]">
 				{projects.map((project) => (
-					<li>
-						<Image 
+					<li class="p-4 border-[1.5px] borde-solid border-blue-50 bg-blue-100 mb-4">
+						{project.image && <a href={`/projects/${project.slug}/`}><img 
 							class="w-full rounded-xl mb-[20px]" 
-							src={img}
+							src={project.image.url}
 							alt="A description of my image."
 							transition:name={`image-${project.id}`} 
 							transition:animate="none"
-						/>
+						/></a>}
 
-						<a href={`/projects/${project.attributes.slug}/`}>
+						<a href={`/projects/${project.slug}/`}>
 							<span
 								transition:name={`link-${project.id}`}
 								transition:animate="none"
-								
-							>{project.attributes.name}</span>
+
+							>{project.name}</span>
 						</a>
 					</li>
 				))}
