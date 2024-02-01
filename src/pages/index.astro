@@ -1,39 +1,27 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import CounterVue from '../components/Counter.vue';
-import CounterPReact from '../components/Counter.jsx';
-import CounterSvelte from '../components/Counter.svelte';
+import Layout from "../layouts/Layout.astro";
+import fetchApi from "../../lib/strapi";
+import type Project from "../interfaces/project";
+
+const projects = await fetchApi<Project[]>({
+	endpoint: "projects",
+	wrappedByKey: "data",
+});
 
 ---
 
 <Layout title="My main page">
 	<main class="container mx-auto px-2 flex justify-center my-[50px]">
-		<Card
-			href="https://astro.build/chat/"
-			title="Card"
-			body="My card"
-		/>
-
+		{projects && projects.length > 0 && (
+			<ul>
+				{projects.map((project) => (
+					<li>
+						<a href={`/projects/${project.attributes.slug}/`}>
+							{project.attributes.name}
+						</a>
+					</li>
+				))}
+			</ul>)
+		}
 	</main>
-
-	<div class="w-full px-2 flex justify-center gap-[50px]">
-		<CounterVue client:visible />
-		<CounterPReact client:visible />
-		<CounterSvelte client:visible />
-		
-	</div>
-
 </Layout>
-
-<script>
-	let cards = document.querySelectorAll("[data-card]");
-	console.log(cards);
-	cards.forEach(card => {
-		card.addEventListener('click', () => {
-			alert('card');
-		})
-	})
-</script>
-
-<style></style>
