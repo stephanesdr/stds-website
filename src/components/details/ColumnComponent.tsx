@@ -1,9 +1,9 @@
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import type Column from "@interfaces/column";
 import { ItemPosition, ColumnType, ImageSize, Direction } from "@interfaces/column";
 import { motion, useTransform, useSpring, MotionValue } from 'framer-motion'
-import HygraphVideo from "@components/HygraphVideo.tsx"
-import HygraphImage from "@components/HygraphImage.tsx"
+import HygraphVideo from "@components/HygraphVideoComponent"
+import HygraphImage from "@components/HygraphImageComponent"
 import type Asset from "@interfaces/asset"
 
 type ColumnProps = {

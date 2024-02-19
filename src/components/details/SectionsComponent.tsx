@@ -1,7 +1,9 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import type Project from "@interfaces/project.js"
-import Section from "./Section.tsx"
+import SectionComponent from "./SectionComponent.tsx"
 import { motion } from "framer-motion";
+import { projectId } from "@stores/AppStore.ts";
+import { useStore } from '@nanostores/react';
 
 type SectionsProps = {
     project: Project
@@ -13,7 +15,12 @@ const variants = {
 }
   
 export default function Sections({ project }: SectionsProps) {
-    const [show, setShow] = useState(true);
+    const [show] = useState(true);
+    const $projectId = useStore(projectId);
+
+    useEffect(() => {
+        console.log($projectId)
+    }, [])
 
     const columnIndexes = useMemo(() => {
         const data: any = project.sections.reduce((acc, curr) => {
@@ -31,6 +38,7 @@ export default function Sections({ project }: SectionsProps) {
         initial={"closed"}
         animate={show ? "open" : "closed"}
         variants={variants}>
-        {project.sections && project.sections.length > 0 && project.sections.map(section => <Section projectSize={project.defaultSize} startIndexAt={columnIndexes[section.id]} key={section.id} section={section} />)}
+        {project.sections && project.sections.length > 0 && project.sections.map(section => <SectionComponent projectSize={project.defaultSize} startIndexAt={columnIndexes[section.id]} key={section.id} section={section} />)}
+    
     </motion.ul>
 }

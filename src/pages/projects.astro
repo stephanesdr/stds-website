@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import type Project from "../interfaces/project";
 import {simpleSchema as projectSchema} from "../interfaces/project";
-import { fade } from 'astro:transitions';
+import ProjectRoutingComponent from "@components/ProjectRoutingComponent";
 
 const query = {
     method: "POST",
@@ -44,17 +44,17 @@ const myFade = {
 ---
 
 <Layout title="My main page">
+    <ProjectRoutingComponent client:visible />
     <div class="project-list w-full flex flex-row justify-start gap-4">
         <div class="flex-1"></div>
         <div class="flex-[3] relative">
             <div class="absolute z-50 px-4 border-green-500 border">
-                {
-                    projects && projects.length > 0 && (
+                { projects && projects.length > 0 && (
                         <ul class="my-[50px]">
                             {projects.map((project) => (
                                 <li class="p-4 border-[1.5px] borde-solid border-blue-50 bg-blue-100 mb-4">
                                     {project.image && (
-                                        <a href={`/projects/${project.slug}/`}>
+                                        <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
                                             <img
                                                 class="w-full rounded-xl mb-[20px] will-change-transform"
                                                 src={project.image.url}
@@ -76,8 +76,7 @@ const myFade = {
                                 </li>
                             ))}
                         </ul>
-                    )
-                }
+                    ) }
             </div>
             
         </div>

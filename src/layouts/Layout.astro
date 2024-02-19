@@ -1,7 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-import Header from "@components/layouts/Header.astro";
-import Footer from "@components/layouts/Footer.astro";
+import HeaderComponent from "@components/layouts/HeaderComponent.astro";
+import FooterComponent from "@components/layouts/FooterComponent.astro";
 
 interface Props {
 	title: string;
@@ -25,12 +25,12 @@ const currentPath = Astro.url.pathname;
 	</head>
 	<body>
         <div class="wrapper min-h-screen h-screen flex flex-col">
-            <Header page={currentPath} />
+            <HeaderComponent page={currentPath} />
             <main class="boxed flex-1 relative">
                 <slot />
 
             </main>
-            <Footer />
+            <FooterComponent />
         </div>
         
 	</body>
@@ -40,14 +40,5 @@ const currentPath = Astro.url.pathname;
     .boxed {
        @apply container mx-auto border border-solid border-black
     }
-
-    .header--type-project {
-        @apply z-50 md:fixed flex flex-col md:flex-row items-center justify-center h-auto md:h-0 top-0 md:top-1/2 translate-y-0 md:-translate-y-1/2
-    }
-
-    .header--type-project > nav {
-        @apply w-full
-    }
-
 
 </style>

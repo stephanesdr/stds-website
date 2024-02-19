@@ -1,7 +1,7 @@
-import React, { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo } from "react";
 import type Section from "@interfaces/section"
 import { Size } from "@interfaces/section"
-import Column from "./Column.tsx"
+import ColumnComponent from "./ColumnComponent.tsx"
 import { useScroll } from "framer-motion"
 
 type SectionProps = {
@@ -59,7 +59,7 @@ export default function SectionComponent({ section, projectSize, startIndexAt = 
     const columns = useMemo(() => {
         return <div style={sectionStyle} className="project__columns-wrapper">
             <div style={{gap: section.gap}} className="project__columns w-full flex flex-col sm:flex-row justify-start items-stretch">
-                {section.columns && section.columns.length > 0 && section.columns.map((column, i) => <Column
+                {section.columns && section.columns.length > 0 && section.columns.map((column, i) => <ColumnComponent
                     key={column.id}
                     index={startIndexAt + i}
                     scrollYProgress={scrollYProgress}
