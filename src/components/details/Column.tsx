@@ -1,10 +1,10 @@
-import { useCallback, useMemo } from "preact/hooks";
-import type Column from "../../interfaces/column";
-import { ItemPosition, ColumnType, ImageSize, Direction } from "../../interfaces/column";
+import React, { useCallback, useMemo } from "react";
+import type Column from "@interfaces/column";
+import { ItemPosition, ColumnType, ImageSize, Direction } from "@interfaces/column";
 import { motion, useTransform, useSpring, MotionValue } from 'framer-motion'
-import HygraphVideo from "../HygraphVideo"
-import HygraphImage from "../HygraphImage"
-import type Asset from "../../interfaces/asset"
+import HygraphVideo from "@components/HygraphVideo.tsx"
+import HygraphImage from "@components/HygraphImage.tsx"
+import type Asset from "@interfaces/asset"
 
 type ColumnProps = {
     column: Column
@@ -15,7 +15,7 @@ type ColumnProps = {
 const rF1 = 1;
 const rF2 = rF1 * 2;
 
-export default function Column({ column, scrollYProgress, index }: ColumnProps) {
+export default function ColumnComponent({ column, scrollYProgress, index }: ColumnProps) {
     const scrollTransformed = useSpring(scrollYProgress);
 
     const y = useTransform(scrollTransformed, [0, 1],

@@ -1,6 +1,7 @@
-import { useState, useMemo } from "preact/hooks";
-import type Project from "../../interfaces/project"
-import type Section from "./section"
+import React, { useState, useMemo } from "react";
+import type Project from "@interfaces/project.js"
+import Section from "./Section.tsx"
+import { motion } from "framer-motion";
 
 type SectionsProps = {
     project: Project
@@ -12,7 +13,7 @@ const variants = {
 }
   
 export default function Sections({ project }: SectionsProps) {
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
 
     const columnIndexes = useMemo(() => {
         const data: any = project.sections.reduce((acc, curr) => {
@@ -30,6 +31,6 @@ export default function Sections({ project }: SectionsProps) {
         initial={"closed"}
         animate={show ? "open" : "closed"}
         variants={variants}>
-        {project.sections && project.sections.length > 0 && project.sections.map(section => <Section projectSize={project.defaultSize} projectPrimaryColor={project.primaryColor} startIndexAt={columnIndexes[section.id]} key={section.id} section={section} />)}
+        {project.sections && project.sections.length > 0 && project.sections.map(section => <Section projectSize={project.defaultSize} startIndexAt={columnIndexes[section.id]} key={section.id} section={section} />)}
     </motion.ul>
 }

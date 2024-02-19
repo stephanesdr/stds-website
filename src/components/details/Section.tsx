@@ -1,7 +1,7 @@
-import { useState, useRef, useMemo } from "preact/hooks";
-import type Section from "../../interfaces/section"
-import { Size } from "../../interfaces/section"
-import Column from "./Column"
+import React, { useState, useRef, useMemo } from "react";
+import type Section from "@interfaces/section"
+import { Size } from "@interfaces/section"
+import Column from "./Column.tsx"
 import { useScroll } from "framer-motion"
 
 type SectionProps = {
@@ -10,7 +10,7 @@ type SectionProps = {
     startIndexAt: number
 }
 
-export default function Section({ section, projectSize, startIndexAt = 0 }: SectionProps) {
+export default function SectionComponent({ section, projectSize, startIndexAt = 0 }: SectionProps) {
     const scrollRef = useRef(null)
 
     const [type] = useState("normal");

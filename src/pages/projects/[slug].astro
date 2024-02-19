@@ -1,8 +1,8 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Card from "../../components/Card.astro";
-import type Project from "../../interfaces/project";
-import  {schema as projectSchema} from "../../interfaces/project";
+import Layout from "@layouts/Layout.astro";
+import type Project from "@interfaces/project";
+import  {schema as projectSchema} from "@interfaces/project";
+import Sections from "@components/details/Sections";
 
 const { slug } = Astro.params;
 
@@ -46,13 +46,10 @@ try {
             transition:animate="none"
         />}
 
-        {
-            project && (
-                <Card
+        { project && (
+                <Sections
                     project={project}
-                    href={`/projects/${project.slug}`}
-                    title={project.name}
-                    body={project.description || ""}
+                    client:load
                 />
             )
         }
