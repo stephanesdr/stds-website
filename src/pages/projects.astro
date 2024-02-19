@@ -1,0 +1,86 @@
+---
+import Layout from "../layouts/Layout.astro";
+import type Project from "../interfaces/project";
+import {simpleSchema as projectSchema} from "../interfaces/project";
+import { fade } from 'astro:transitions';
+
+const query = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        query: `
+      {
+        projects {
+			${projectSchema()}
+        }
+      }`,
+    }),
+};
+
+const response = await fetch(import.meta.env.HYGRAPH_ENDPOINT, query);
+const json = await response.json();
+const projects: Project[] = json.data.projects;
+
+const anim = {
+  old: {
+    name: 'fadeIn',
+    duration: '0.2s',
+    easing: 'linear',
+    fillMode: 'forwards',
+  },
+  new: {
+    name: 'fadeOut',
+    duration: '0.3s',
+    easing: 'linear',
+    fillMode: 'backwards',
+  }
+};
+
+const myFade = {
+  forwards: anim,
+  backwards: anim,
+};
+
+---
+
+<Layout title="My main page">
+    <div class="project-list w-full flex flex-row justify-start gap-4">
+        <div class="flex-1"></div>
+        <div class="flex-[3] relative">
+            <div class="absolute z-50 px-4 border-green-500 border">
+                {
+                    projects && projects.length > 0 && (
+                        <ul class="my-[50px]">
+                            {projects.map((project) => (
+                                <li class="p-4 border-[1.5px] borde-solid border-blue-50 bg-blue-100 mb-4">
+                                    {project.image && (
+                                        <a href={`/projects/${project.slug}/`}>
+                                            <img
+                                                class="w-full rounded-xl mb-[20px] will-change-transform"
+                                                src={project.image.url}
+                                                alt="A description of my image."
+                                                transition:name={`image-${project.id}`}
+                                                transition:animate={myFade}
+                                            />
+                                        </a>
+                                    )}
+    
+                                    <a href={`/projects/${project.slug}/`}>
+                                        <span
+                                            transition:name={`link-${project.id}`}
+                                            transition:animate="none"
+                                        >
+                                            {project.name}
+                                        </span>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    )
+                }
+            </div>
+            
+        </div>
+        <div class="flex-1"></div>
+    </div>
+</Layout>

@@ -15,6 +15,7 @@ const { href, title, body, project } = Astro.props;
 	<a href={href}>
 		<h2>
 			<span
+                class="will-change-transform"
 				transition:name={`link-${project.id}`}
 				transition:animate="none"
 			>{title} <span>&rarr;</span></span>

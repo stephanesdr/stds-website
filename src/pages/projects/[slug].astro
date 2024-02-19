@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Card from "../../components/Card.astro";
 import type Project from "../../interfaces/project";
+import  {schema as projectSchema} from "../../interfaces/project";
 
 const { slug } = Astro.params;
 
@@ -14,13 +15,7 @@ try {
 		body: JSON.stringify({
 			query: `query GetProjectBySlugQuery($slug: String!) {
 				project(where: {slug: $slug}) {
-					id
-					name
-					image {
-						url
-					}
-					description
-					slug
+					${projectSchema()}
 				}
 			}`,
             variables: { slug }
@@ -40,28 +35,26 @@ try {
 ---
 
 <Layout title="My main page">
-	<main class="container h-screen flex items-center mx-auto px-4 max-w-[600px]">
-		<div>
-			<a href="/" transition:name={`back`} transition:animate={`slide`}>&larr; Back</a>
-			
-			{project.image && <img
-				class="w-full mb-[50px]"
-				src={project.image.url}
-				alt="A description of my image."
-				transition:name={`image-${project.id}`}
-				transition:animate="none"
-			/>}
+    <div>
+        <a href="/projects" transition:name={`back`} transition:animate={`slide`}>&larr; Back</a>
+        
+        {project.image && <img
+            class="w-full mb-[50px]"
+            src={project.image.url}
+            alt="A description of my image."
+            transition:name={`image-${project.id}`}
+            transition:animate="none"
+        />}
 
-			{
-				project && (
-					<Card
-						project={project}
-						href={`/projects/${project.slug}`}
-						title={project.name}
-						body={project.description}
-					/>
-				)
-			}
-		</div>
-	</main>
+        {
+            project && (
+                <Card
+                    project={project}
+                    href={`/projects/${project.slug}`}
+                    title={project.name}
+                    body={project.description || ""}
+                />
+            )
+        }
+    </div>
 </Layout>
