@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react"
+import { useCallback, useMemo } from "preact/hooks";
 import type Column from "../../interfaces/column";
 import { ItemPosition, ColumnType, ImageSize, Direction } from "../../interfaces/column";
 import { motion, useTransform, useSpring, MotionValue } from 'framer-motion'

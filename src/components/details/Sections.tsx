@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react"
+import { useState, useMemo } from "preact/hooks";
 import type Project from "../../interfaces/project"
 import type Section from "./section"
 
@@ -11,7 +11,7 @@ const variants = {
     closed: { opacity: 0 }
 }
   
-export default function SectionsComponent({ project }: SectionsProps) {
+export default function Sections({ project }: SectionsProps) {
     const [show, setShow] = useState(false);
 
     const columnIndexes = useMemo(() => {

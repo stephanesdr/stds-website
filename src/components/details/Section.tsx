@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react"
+import { useState, useRef, useMemo } from "preact/hooks";
 import type Section from "../../interfaces/section"
 import { Size } from "../../interfaces/section"
 import Column from "./Column"
@@ -9,7 +9,6 @@ type SectionProps = {
     projectSize: Size
     startIndexAt: number
 }
-
 
 export default function Section({ section, projectSize, startIndexAt = 0 }: SectionProps) {
     const scrollRef = useRef(null)
