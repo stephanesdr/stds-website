@@ -37,7 +37,6 @@ export default function Sections({ project }: SectionsProps) {
       }, [project.sections])
     
     return  <>
-         <p className="text-center mb-4">{$debug ? 'debug mode is On' : 'debug mode is Off'}</p>
         <motion.ul className={cn("project__sections", "overflow-hidden")}
             initial={"closed"}
             animate={show ? "open" : "closed"}
