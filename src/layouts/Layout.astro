@@ -1,11 +1,33 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import HeaderComponent from "@components/layouts/HeaderComponent";
+import FooterComponent from "@components/layouts/FooterComponent";
 
 interface Props {
 	title: string;
 }
 
+enum HeaderType {
+    "Projects" = "projects",
+    "Project" = "project",
+    "Home" = "home",
+}
+
+const links = [
+	{ href: "/projects", label: "work" },
+	{ href: "/contact", label: "contact" },
+	{ href: "/cv", label: "CV" },
+];
+
 const { title } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const type = ((page) => {
+	if (/^\/?projects$/g.test(page)) return HeaderType.Projects;
+	if (/^\/?projects\/(.*?)/g.test(page)) return HeaderType.Project;
+	return HeaderType.Home;
+
+})(currentPath);
 ---
 
 <!doctype html>
@@ -20,8 +42,59 @@ const { title } = Astro.props;
 		<ViewTransitions />
 	</head>
 	<body>
-		<slot />
+        <div class="wrapper min-h-screen h-screen flex flex-col">
+            <HeaderComponent type={type} client:only="react">
+				<div
+					transition:name={`logo`}
+					transition:animate="none"
+					class="flex-1 will-change-transform"
+					class:list={[{'-translate-x-[500px]': type == HeaderType.Project}]}
+				>
+					<a href="/">
+						<h1 class="text-2xl">STD</h1>
+					</a>
+
+				</div>
+				<div class="flex-[3]"></div>
+				<ul
+					transition:name={`nav-right`}
+					transition:animate="none"
+					class="flex-1 flex flex-row justify-end items-center gap-4 will-change-transform"
+					class:list={[{'translate-x-[500px]': type == HeaderType.Project}]}
+				>
+					{
+						links.map((link) => (
+							<li>
+								<a href={link.href}>{link.label}</a>
+							</li>
+						))
+					}
+				</ul>
+			</HeaderComponent>
+
+            <main class="flex-1 relative">
+                <slot />
+            </main>
+
+            <FooterComponent client:only="react">
+				<div></div>
+			</FooterComponent>
+        </div>
+        
 	</body>
 </html>
 
-<style is:global></style>
+<style is:global>
+    .boxed {
+       @apply container mx-auto
+    }
+
+	.header--type-project {
+        @apply z-50 md:fixed flex flex-col md:flex-row items-center justify-center h-auto md:h-0 top-0 md:top-1/2 translate-y-0 md:-translate-y-1/2
+    }
+
+    .header--type-project > nav {
+        @apply w-full
+    }
+
+</style>

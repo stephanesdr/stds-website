@@ -1,7 +1,8 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Card from "../../components/Card.astro";
-import type Project from "../../interfaces/project";
+import Layout from "@layouts/Layout.astro";
+import type Project from "@interfaces/project";
+import  {schema as projectSchema} from "@interfaces/project";
+import SectionsComponent from "@components/details/SectionsComponent";
 
 const { slug } = Astro.params;
 
@@ -14,20 +15,14 @@ try {
 		body: JSON.stringify({
 			query: `query GetProjectBySlugQuery($slug: String!) {
 				project(where: {slug: $slug}) {
-					id
-					name
-					image {
-						url
-					}
-					description
-					slug
+					${projectSchema()}
 				}
 			}`,
             variables: { slug }
 		}),
 	};
 
-	const response = await fetch(import.meta.env.HYGRAPH_ENDPOINT, query);
+	const response = await fetch(import.meta.env.ASTRO_APP_HYGRAPH_ENDPOINT, query);
 	const json = await response.json();
 
 	project = json.data.project;
@@ -40,28 +35,45 @@ try {
 ---
 
 <Layout title="My main page">
-	<main class="container h-screen flex items-center mx-auto px-4 max-w-[600px]">
-		<div>
-			<a href="/" transition:name={`back`} transition:animate={`slide`}>&larr; Back</a>
-			
-			{project.image && <img
-				class="w-full mb-[50px]"
-				src={project.image.url}
-				alt="A description of my image."
-				transition:name={`image-${project.id}`}
-				transition:animate="none"
-			/>}
+    <div class="project-list boxed w-full flex flex-row justify-start gap-4">
+        <div class="flex-1"></div>
+        <div class="flex-[3] relative">
+           
+            {project.image && <img
+                class="w-full mb-[50px] will-change-transform"
+                src={project.image.url}
+                alt="A description of my image."
+                transition:name={`image-${project.id}`}
+                transition:animate="none"
+            />}
 
-			{
-				project && (
-					<Card
-						project={project}
-						href={`/projects/${project.slug}`}
-						title={project.name}
-						body={project.description}
-					/>
-				)
-			}
-		</div>
-	</main>
+            <a href="/projects" 
+                class="fixed top-1 left-1"
+                transition:name={`back`} 
+                transition:animate={`slide`}
+            >&larr; Back</a>
+
+            <div>
+                <span
+                    class="font-bold text-2xl"
+                    transition:name={`link-${project.id}`}
+                    transition:animate="none"
+                >
+                    {project.name}
+                </span>
+
+                
+            </div>
+        </div>
+        <div class="flex-1"></div>
+    </div>
+
+    { project && (
+            <SectionsComponent
+                project={project}
+                client:only="react"
+            />
+        )
+    }
+
 </Layout>

@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 import tailwind from '@astrojs/tailwind';
-import preact from '@astrojs/preact';
+import react from '@astrojs/react';
 import vue from '@astrojs/vue';
 import svelte from '@astrojs/svelte';
 
@@ -12,7 +12,7 @@ export default defineConfig({
     output: 'server',
     adapter: vercel(),
     integrations: [
-        preact(), 
+        react(), 
         vue(),
         svelte(),
         tailwind()
