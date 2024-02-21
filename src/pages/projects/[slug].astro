@@ -22,7 +22,7 @@ try {
 		}),
 	};
 
-	const response = await fetch(import.meta.env.HYGRAPH_ENDPOINT, query);
+	const response = await fetch(import.meta.env.ASTRO_APP_HYGRAPH_ENDPOINT, query);
 	const json = await response.json();
 
 	project = json.data.project;
@@ -36,7 +36,10 @@ try {
 
 <Layout title="My main page">
     <div>
-        <a href="/projects" transition:name={`back`} transition:animate={`slide`}>&larr; Back</a>
+        <a href="/projects" 
+            transition:name={`back`} 
+            transition:animate={`slide`}
+        >&larr; Back</a>
         
         {project.image && <img
             class="w-full mb-[50px] will-change-transform"

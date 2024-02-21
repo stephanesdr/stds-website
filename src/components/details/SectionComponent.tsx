@@ -3,6 +3,7 @@ import type Section from "@interfaces/section"
 import { Size } from "@interfaces/section"
 import ColumnComponent from "./ColumnComponent.tsx"
 import { useScroll } from "framer-motion"
+import { cn } from "@utils/cn.ts";
 
 type SectionProps = {
     section: Section
@@ -57,8 +58,8 @@ export default function SectionComponent({ section, projectSize, startIndexAt = 
     }, [section])
 
     const columns = useMemo(() => {
-        return <div style={sectionStyle} className="project__columns-wrapper">
-            <div style={{gap: section.gap}} className="project__columns w-full flex flex-col sm:flex-row justify-start items-stretch">
+        return <div style={sectionStyle} className={cn("project__columns-wrapper")}>
+            <div style={{gap: section.gap}} className={cn("project__columns", "w-full flex flex-col sm:flex-row justify-start items-stretch")}>
                 {section.columns && section.columns.length > 0 && section.columns.map((column, i) => <ColumnComponent
                     key={column.id}
                     index={startIndexAt + i}
@@ -77,26 +78,26 @@ export default function SectionComponent({ section, projectSize, startIndexAt = 
     return <li
         ref={scrollRef}
         style={sectionWrapperStyle}
-        className="project__sections__item w-full"
+        className={cn("project__sections__item", "w-full")}
     >
         {size === Size.Full && <div className="w-full">{columns}</div>}
 
         {type === 'container' && <>
-            {size === Size.xs && <div className="w-full container mx-auto">{columns}</div>}
-            {size === Size.sm && <div className="w-full sm:container sm:mx-auto">{columns}</div>}
-            {size === Size.md && <div className="w-full md:container md:mx-auto">{columns}</div>}
-            {size === Size.lg && <div className="w-full lg:container lg:mx-auto">{columns}</div>}
-            {size === Size.xl && <div className="w-full xl:container xl:mx-auto">{columns}</div>}
-            {size === Size.xxl && <div className="w-full 2xl:container 2xl:mx-auto">{columns}</div>}
+            {size === Size.xs && <div className={cn("w-full container mx-auto")}>{columns}</div>}
+            {size === Size.sm && <div className={cn("w-full sm:container sm:mx-auto")}>{columns}</div>}
+            {size === Size.md && <div className={cn("w-full md:container md:mx-auto")}>{columns}</div>}
+            {size === Size.lg && <div className={cn("w-full lg:container lg:mx-auto")}>{columns}</div>}
+            {size === Size.xl && <div className={cn("w-full xl:container xl:mx-auto")}>{columns}</div>}
+            {size === Size.xxl && <div className={cn("w-full 2xl:container 2xl:mx-auto")}>{columns}</div>}
         </>}
 
         {type !== 'container' && <>
-            {size === Size.xs && <div className="w-full mx-auto max-w-screen-xs">{columns}</div>}
-            {size === Size.sm && <div className="w-full mx-auto max-w-screen-sm">{columns}</div>}
-            {size === Size.md && <div className="w-full mx-auto max-w-screen-md">{columns}</div>}
-            {size === Size.lg && <div className="w-full mx-auto max-w-screen-lg">{columns}</div>}
-            {size === Size.xl && <div className="w-full mx-auto max-w-screen-xl">{columns}</div>}
-            {size === Size.xxl && <div className="w-full mx-auto max-w-screen-2xl">{columns}</div>}
+            {size === Size.xs && <div className={cn("w-full mx-auto max-w-screen-xs")}>{columns}</div>}
+            {size === Size.sm && <div className={cn("w-full mx-auto max-w-screen-sm")}>{columns}</div>}
+            {size === Size.md && <div className={cn("w-full mx-auto max-w-screen-md")}>{columns}</div>}
+            {size === Size.lg && <div className={cn("w-full mx-auto max-w-screen-lg")}>{columns}</div>}
+            {size === Size.xl && <div className={cn("w-full mx-auto max-w-screen-xl")}>{columns}</div>}
+            {size === Size.xxl && <div className={cn("w-full mx-auto max-w-screen-2xl")}>{columns}</div>}
         </>}
     
     </li>

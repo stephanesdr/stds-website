@@ -1,3 +1,4 @@
+import { cn } from "@utils/cn";
 import { useEffect, useMemo, useRef } from "react";
 
 function HygraphVideoLoader({ src }: any) {
@@ -8,13 +9,13 @@ function HygraphVideoLoader({ src }: any) {
 type HygraphVideoProps = {
     src: any,
     className?: string,
-    style?: any,
+    style?: React.CSSProperties,
     width: number,
     height: number,
     mimeType: string,
 }
 
-const HygraphVideo = ({ src, className, style, width, height, mimeType }: HygraphVideoProps) => {
+const HygraphVideo = ({ src, style, className, width, height, mimeType }: HygraphVideoProps) => {
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
@@ -51,7 +52,7 @@ const HygraphVideo = ({ src, className, style, width, height, mimeType }: Hygrap
 
     return <video
             ref={videoRef}
-            className={className}
+            className={cn(className)}
             style={style}
             width={width}
             height={height}

@@ -1,3 +1,5 @@
+import { cn } from "@utils/cn";
+
 function HygraphImageLoader({ src, width }: any) {
     const w = width ?? 300;
     const relativeSrc = (src: any) => src.split('/').pop();
@@ -6,7 +8,7 @@ function HygraphImageLoader({ src, width }: any) {
 
 interface HygraphImageProps {
     className?: string,
-    style: any,
+    style?: React.CSSProperties,
     src: any,
     width: number,
     height: number,
@@ -15,7 +17,7 @@ interface HygraphImageProps {
 
 const HygraphImage = ({ className, style, src, width, height, alt, ...rest }: HygraphImageProps) => {
     return <img
-            className={className}
+            className={cn(className)}
             style={style}
             src={HygraphImageLoader({ src, width })}
             alt={alt}

@@ -1,9 +1,8 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import type Project from "@interfaces/project.js"
 import SectionComponent from "./SectionComponent.tsx"
 import { motion } from "framer-motion";
-import { projectId } from "@stores/AppStore.ts";
-import { useStore } from '@nanostores/react';
+import { cn } from "@utils/cn.ts";
 
 type SectionsProps = {
     project: Project
@@ -16,11 +15,6 @@ const variants = {
   
 export default function Sections({ project }: SectionsProps) {
     const [show] = useState(true);
-    const $projectId = useStore(projectId);
-
-    useEffect(() => {
-        console.log($projectId)
-    }, [])
 
     const columnIndexes = useMemo(() => {
         const data: any = project.sections.reduce((acc, curr) => {
@@ -34,7 +28,7 @@ export default function Sections({ project }: SectionsProps) {
     
       }, [project.sections])
     
-    return  <motion.ul className="project__sections overflow-hidden"
+    return  <motion.ul className={cn("project__sections", "overflow-hidden")}
         initial={"closed"}
         animate={show ? "open" : "closed"}
         variants={variants}>

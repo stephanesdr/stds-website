@@ -5,6 +5,7 @@ import { motion, useTransform, useSpring, MotionValue } from 'framer-motion'
 import HygraphVideo from "@components/HygraphVideoComponent"
 import HygraphImage from "@components/HygraphImageComponent"
 import type Asset from "@interfaces/asset"
+import { cn } from "@utils/cn";
 
 type ColumnProps = {
     column: Column
@@ -80,36 +81,36 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
     const isImage = useCallback((image: Asset) => /^image\//.test(image.mimeType), []);
 
     return <motion.div
-        className="project__columns__item flex overflow-hidden"
+        className={cn("project__columns__item", "flex overflow-hidden")}
         style={columnStyle}>
 
         {column.image && <>
             {column.columnType === ColumnType.Image && <motion.div
-                className="project__image-wrapper w-full overflow-hidden"
+                className={cn("project__image-wrapper", "w-full overflow-hidden")}
                 style={{
                     y: column.parallax ? iy : 0,
                 }}>
 
                 {isImage(column.image) && <HygraphImage
-                    className="project__image w-full"
+                    className={cn("project__image", "w-full")}
                     style={objectStyle}
                     src={column.image.url}
                     width={column.image.width}
                     height={column.image.height}
                     alt={""} />}
 
-                {!isImage(column.image) && <p className="w-full p-4 bg-red-500 text-white">Error: Not a valid image asset!</p>}
+                {!isImage(column.image) && <p className={cn("w-full p-4 bg-red-500 text-white")}>Error: Not a valid image asset!</p>}
 
             </motion.div>}
 
             {column.columnType === ColumnType.Video && <motion.div
-                className="project__video-wrapper w-full overflow-hidden"
+                className={cn("project__video-wrapper", "w-full overflow-hidden")}
                 style={{
                     y: column.parallax ? iy : 0,
                 }}>
 
                 {isVideo(column.image) && <HygraphVideo
-                    className="project__video w-full"
+                    className={cn("project__video", "w-full")}
                     style={objectStyle}
                     src={column.image.url}
                     width={column.image.width}
@@ -117,12 +118,12 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
                     mimeType={column.image.mimeType}
                 />}
 
-                {!isVideo(column.image) && <p className="w-full p-4 bg-red-500 text-white">Error: Not a valid video asset!</p>}
+                {!isVideo(column.image) && <p className={cn("w-full p-4 bg-red-500 text-white")}>Error: Not a valid video asset!</p>}
 
             </motion.div>}
         </>}
 
-        {column.columnType === ColumnType.Text && <p className="project__text w-full" style={objectStyle}>{column.text}</p>}
+        {column.columnType === ColumnType.Text && <p className={cn("project__text", "w-full")} style={objectStyle}>{column.text}</p>}
 
     </motion.div>
 }

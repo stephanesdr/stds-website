@@ -8,6 +8,7 @@
       "@layouts/*": ["src/layouts/*"],
       "@stores/*": ["src/stores/*"],
       "@pages/*": ["src/pages/*"],
+      "@utils/*": ["src/utils/*"],
       "@images/*": ["src/images/*"]
     },
     "target": "es6",

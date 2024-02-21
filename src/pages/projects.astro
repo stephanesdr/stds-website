@@ -1,8 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import type Project from "../interfaces/project";
-import {simpleSchema as projectSchema} from "../interfaces/project";
-import ProjectRoutingComponent from "@components/ProjectRoutingComponent";
+import Layout from "@layouts/Layout.astro";
+import type Project from "@interfaces/project";
+import {simpleSchema as projectSchema} from "@interfaces/project";
 
 const query = {
     method: "POST",
@@ -17,7 +16,7 @@ const query = {
     }),
 };
 
-const response = await fetch(import.meta.env.HYGRAPH_ENDPOINT, query);
+const response = await fetch(import.meta.env.ASTRO_APP_HYGRAPH_ENDPOINT, query);
 const json = await response.json();
 const projects: Project[] = json.data.projects;
 
@@ -40,11 +39,9 @@ const myFade = {
   forwards: anim,
   backwards: anim,
 };
-
 ---
 
 <Layout title="My main page">
-    <ProjectRoutingComponent client:visible />
     <div class="project-list w-full flex flex-row justify-start gap-4">
         <div class="flex-1"></div>
         <div class="flex-[3] relative">
@@ -78,7 +75,6 @@ const myFade = {
                         </ul>
                     ) }
             </div>
-            
         </div>
         <div class="flex-1"></div>
     </div>
