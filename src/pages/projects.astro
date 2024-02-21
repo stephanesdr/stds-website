@@ -45,11 +45,11 @@ const myFade = {
     <div class="project-list w-full flex flex-row justify-start gap-4">
         <div class="flex-1"></div>
         <div class="flex-[3] relative">
-            <div class="absolute z-50 px-4 border-green-500 border">
+            <div class="absolute z-50 px-4">
                 { projects && projects.length > 0 && (
                         <ul class="my-[50px]">
                             {projects.map((project) => (
-                                <li class="p-4 border-[1.5px] borde-solid border-blue-50 bg-blue-100 mb-4">
+                                <li class="p-4 mb-4">
                                     {project.image && (
                                         <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
                                             <img
