@@ -35,26 +35,45 @@ try {
 ---
 
 <Layout title="My main page">
-    <div>
-        <a href="/projects" 
-            transition:name={`back`} 
-            transition:animate={`slide`}
-        >&larr; Back</a>
-        
-        {project.image && <img
-            class="w-full mb-[50px] will-change-transform"
-            src={project.image.url}
-            alt="A description of my image."
-            transition:name={`image-${project.id}`}
-            transition:animate="none"
-        />}
+    <div class="project-list boxed w-full flex flex-row justify-start gap-4">
+        <div class="flex-1"></div>
+        <div class="flex-[3] relative">
+           
+            {project.image && <img
+                class="w-full mb-[50px] will-change-transform"
+                src={project.image.url}
+                alt="A description of my image."
+                transition:name={`image-${project.id}`}
+                transition:animate="none"
+            />}
 
-        { project && (
-                <SectionsComponent
-                    project={project}
-                    client:load
-                />
-            )
-        }
+            <a href="/projects" 
+                class="fixed top-1 left-1"
+                transition:name={`back`} 
+                transition:animate={`slide`}
+            >&larr; Back</a>
+
+            <div>
+                <span
+                    class="font-bold text-2xl"
+                    transition:name={`link-${project.id}`}
+                    transition:animate="none"
+                >
+                    {project.name}
+                </span>
+
+                
+            </div>
+        </div>
+        <div class="flex-1"></div>
     </div>
+
+    { project && (
+            <SectionsComponent
+                project={project}
+                client:only="react"
+            />
+        )
+    }
+
 </Layout>

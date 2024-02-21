@@ -43,14 +43,17 @@ const type = ((page) => {
 	</head>
 	<body>
         <div class="wrapper min-h-screen h-screen flex flex-col">
-            <HeaderComponent type={type} client:load>
+            <HeaderComponent type={type} client:only="react">
 				<div
 					transition:name={`logo`}
 					transition:animate="none"
 					class="flex-1 will-change-transform"
 					class:list={[{'-translate-x-[500px]': type == HeaderType.Project}]}
 				>
-					<h1 class="text-2xl">STD</h1>
+					<a href="/">
+						<h1 class="text-2xl">STD</h1>
+					</a>
+
 				</div>
 				<div class="flex-[3]"></div>
 				<ul
@@ -69,11 +72,11 @@ const type = ((page) => {
 				</ul>
 			</HeaderComponent>
 
-            <main class="boxed flex-1 relative">
+            <main class="flex-1 relative">
                 <slot />
             </main>
 
-            <FooterComponent client:load>
+            <FooterComponent client:only="react">
 				<div></div>
 			</FooterComponent>
         </div>

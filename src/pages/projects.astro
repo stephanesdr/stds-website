@@ -42,7 +42,7 @@ const myFade = {
 ---
 
 <Layout title="My main page">
-    <div class="project-list w-full flex flex-row justify-start gap-4">
+    <div class="project-list boxed w-full flex flex-row justify-start gap-4">
         <div class="flex-1"></div>
         <div class="flex-[3] relative">
             <div class="absolute z-50 px-4">
@@ -64,11 +64,13 @@ const myFade = {
     
                                     <a href={`/projects/${project.slug}/`}>
                                         <span
+                                            class="font-bold text-2xl"
                                             transition:name={`link-${project.id}`}
                                             transition:animate="none"
                                         >
                                             {project.name}
                                         </span>
+
                                     </a>
                                 </li>
                             ))}

@@ -4,6 +4,9 @@ import { Size } from "@interfaces/section"
 import ColumnComponent from "./ColumnComponent.tsx"
 import { useScroll } from "framer-motion"
 import { cn } from "@utils/cn.ts";
+import { useStore } from "@nanostores/react";
+import { debug } from "@stores/AppStore";
+import { computed } from "nanostores";
 
 type SectionProps = {
     section: Section
@@ -11,8 +14,13 @@ type SectionProps = {
     startIndexAt: number
 }
 
+const $isDebug = computed(debug, debug => {
+    return debug == '0' ? false : true 
+})
+
 export default function SectionComponent({ section, projectSize, startIndexAt = 0 }: SectionProps) {
     const scrollRef = useRef(null)
+    const $debug = useStore($isDebug)
 
     const [type] = useState("normal");
 
@@ -58,7 +66,10 @@ export default function SectionComponent({ section, projectSize, startIndexAt = 
     }, [section])
 
     const columns = useMemo(() => {
-        return <div style={sectionStyle} className={cn("project__columns-wrapper")}>
+        return <div style={sectionStyle} className={cn(
+            "project__columns-wrapper",
+            $debug ? "border border-red-500" : ""
+        )}>
             <div style={{gap: section.gap}} className={cn("project__columns", "w-full flex flex-col sm:flex-row justify-start items-stretch")}>
                 {section.columns && section.columns.length > 0 && section.columns.map((column, i) => <ColumnComponent
                     key={column.id}
@@ -67,7 +78,7 @@ export default function SectionComponent({ section, projectSize, startIndexAt = 
                     column={column} />)}
             </div>
         </div>
-    }, [section, sectionStyle, startIndexAt, scrollYProgress])
+    }, [section, sectionStyle, startIndexAt, scrollYProgress, $debug])
 
     const size = useMemo(() => {
         if(section.size) return section.size;

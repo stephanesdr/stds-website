@@ -6,6 +6,9 @@ import HygraphVideo from "@components/HygraphVideoComponent"
 import HygraphImage from "@components/HygraphImageComponent"
 import type Asset from "@interfaces/asset"
 import { cn } from "@utils/cn";
+import { useStore } from "@nanostores/react";
+import { debug } from "@stores/AppStore";
+import { computed } from "nanostores";
 
 type ColumnProps = {
     column: Column
@@ -16,14 +19,18 @@ type ColumnProps = {
 const rF1 = 1;
 const rF2 = rF1 * 2;
 
+const $isDebug = computed(debug, debug => {
+    return debug == '0' ? false : true 
+})
+
 export default function ColumnComponent({ column, scrollYProgress, index }: ColumnProps) {
     const scrollTransformed = useSpring(scrollYProgress);
-
+    const $debug = useStore($isDebug)
+    
     const y = useTransform(scrollTransformed, [0, 1],
         column.direction === Direction.Up ? [column.distance * rF2, -column.distance * rF2]
             : [-column.distance * rF2, column.distance * rF2]
     );
-
 
     const iy = useTransform(scrollTransformed, [0, 1],
         column.direction === Direction.Up ? [-column.distance * rF1, column.distance * rF1]
@@ -81,7 +88,10 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
     const isImage = useCallback((image: Asset) => /^image\//.test(image.mimeType), []);
 
     return <motion.div
-        className={cn("project__columns__item", "flex overflow-hidden")}
+        className={cn(
+            "project__columns__item", "flex overflow-hidden",
+            $debug ? "border border-blue-500" : ""
+        )}
         style={columnStyle}>
 
         {column.image && <>
@@ -92,7 +102,11 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
                 }}>
 
                 {isImage(column.image) && <HygraphImage
-                    className={cn("project__image", "w-full")}
+                    className={cn(
+                        "project__image",
+                        $debug ? "border border-green-500" : "",
+                        "w-full"
+                    )}
                     style={objectStyle}
                     src={column.image.url}
                     width={column.image.width}
@@ -110,7 +124,10 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
                 }}>
 
                 {isVideo(column.image) && <HygraphVideo
-                    className={cn("project__video", "w-full")}
+                    className={cn(
+                        "project__video",
+                        $debug ? "border border-green-500" : "",
+                        "w-full")}
                     style={objectStyle}
                     src={column.image.url}
                     width={column.image.width}
@@ -123,7 +140,10 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
             </motion.div>}
         </>}
 
-        {column.columnType === ColumnType.Text && <p className={cn("project__text", "w-full")} style={objectStyle}>{column.text}</p>}
+        {column.columnType === ColumnType.Text && <p className={cn(
+            "project__text",
+            $debug ? "border border-green-500" : "",
+            "w-full")} style={objectStyle}>{column.text}</p>}
 
     </motion.div>
 }

@@ -19,6 +19,9 @@ dependencies:
   '@astrojs/vue':
     specifier: ^4.0.8
     version: 4.0.8(@babel/core@7.23.9)(astro@4.2.8)(vite@5.0.12)(vue@3.4.15)
+  '@nanostores/persistent':
+    specifier: ^0.10.0
+    version: 0.10.0(nanostores@0.9.5)
   '@nanostores/react':
     specifier: ^0.7.1
     version: 0.7.1(nanostores@0.9.5)(react@18.2.0)
@@ -904,6 +907,15 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: false
+
+  /@nanostores/persistent@0.10.0(nanostores@0.9.5):
+    resolution: {integrity: sha512-orZBUnG77YH57sEGKBQkvPgQrAgKOJjCZO8sjAyMgGLiPhaXJUNe01EKUz2hviKCTb+Qw7hg2a/DG9IgopraSQ==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      nanostores: ^0.9.0 || ^0.10.0
+    dependencies:
+      nanostores: 0.9.5
     dev: false
 
   /@nanostores/react@0.7.1(nanostores@0.9.5)(react@18.2.0):
