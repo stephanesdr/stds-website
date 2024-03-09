@@ -15,6 +15,8 @@ export default defineConfig({
         react(), 
         vue(),
         svelte(),
-        tailwind()
+        tailwind({
+            applyBaseStyles: false,
+        })
     ]
 });

@@ -53,19 +53,23 @@ try {
                 transition:animate={`slide`}
             >&larr; Back</a>
 
-            <div>
+            <div class="flex flex-col">
                 <span
-                    class="font-bold text-2xl"
+                    class="font-serif  font-normal text-2xl text-balance"
                     transition:name={`link-${project.id}`}
                     transition:animate="none"
                 >
                     {project.name}
+    
                 </span>
 
+                <div class="py-4">{project.description}</div>
                 
             </div>
         </div>
-        <div class="flex-1"></div>
+        <div class="flex-1">
+            
+        </div>
     </div>
 
     { project && (

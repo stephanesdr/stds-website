@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+      font-family: 'Tekst';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('../public/fonts/Tekst-DRoman.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Tekst';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('../public/fonts/Tekst-DItalic.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Tekst';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('../public/fonts/Tekst-DBold.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Tekst';
+      font-style: italic;
+      font-weight: 600;
+      font-display: swap;
+      src: url('../public/fonts/Tekst-DBoldItalic.woff2') format('woff2');
+    }
+  }

@@ -20,6 +20,7 @@ const response = await fetch(import.meta.env.ASTRO_APP_HYGRAPH_ENDPOINT, query);
 const json = await response.json();
 const projects: Project[] = json.data.projects;
 
+
 const anim = {
   old: {
     name: 'fadeIn',
