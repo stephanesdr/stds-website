@@ -11,14 +11,15 @@ const {
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
-		fontSize: {
-			xs: ['12px', '13.5px'],
-			sm: ['15px', '18px'],
-			base: ['17px', '21px'],
-			lg: ['28px', '34px'],
-			xl: ['56px', '64px'],
-		},
+		
 		extend: {
+            fontSize: {
+                xs: ['12px', '13.5px'],
+                sm: ['15px', '18px'],
+                base: ['17px', '21px'],
+                lg: ['28px', '34px'],
+                xl: ['56px', '64px'],
+            },
 			fontFamily: {
 				sans: ['Interphase', ...defaultTheme.fontFamily.sans],
 				serif: ['Tekst', ...defaultTheme.fontFamily.serif]

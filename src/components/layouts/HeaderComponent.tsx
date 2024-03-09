@@ -24,14 +24,15 @@ export default function HeaderComponent({ type, children }: {
         <header
             className={cn(
                     "header w-full relative",
-                    type == HeaderType.Projects || type == HeaderType.Project ? "header--type-project" : ""
+                    type == HeaderType.Projects ? "header--type-projects" : "",
+                   type == HeaderType.Project ? "header--type-project" : "",
                 )
             }
         >
             <nav 
                 className={cn(
                     "flex flex-col md:flex-row items-center flex-wrap justify-between gap-4 py-4",
-                    //$debug ? 'border border-red-200' : '',
+                    $debug ? 'border border-red-200' : '',
                     type !== HeaderType.Project ? "boxed" : "" 
                 )}
             >

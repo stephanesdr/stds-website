@@ -36,8 +36,8 @@ try {
 
 <Layout title="My main page">
     <div class="project-list boxed w-full flex flex-row justify-start gap-4">
-        <div class="flex-1"></div>
-        <div class="flex-[3] relative">
+        <div class="md:flex-1"></div>
+        <div class="md:flex-[3] relative">
            
             {project.image && <img
                 class="w-full mb-[50px] will-change-transform"
@@ -55,7 +55,7 @@ try {
 
             <div class="flex flex-col">
                 <span
-                    class="font-serif  font-normal text-2xl text-balance"
+                    class="font-sans uppercase text-lg  "
                     transition:name={`link-${project.id}`}
                     transition:animate="none"
                 >
@@ -63,7 +63,7 @@ try {
     
                 </span>
 
-                <div class="py-4">{project.description}</div>
+                <div class="p-8 font-serif font-normal text-lg text-balance">{project.description}</div>
                 
             </div>
         </div>

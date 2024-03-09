@@ -25,13 +25,13 @@ const anim = {
   old: {
     name: 'fadeIn',
     duration: '0.2s',
-    easing: 'linear',
+    easing: 'ease-out',
     fillMode: 'forwards',
   },
   new: {
     name: 'fadeOut',
     duration: '0.3s',
-    easing: 'linear',
+    easing: 'ease-out',
     fillMode: 'backwards',
   }
 };
@@ -43,39 +43,41 @@ const myFade = {
 ---
 
 <Layout title="My main page">
-    <div class="project-list boxed w-full flex flex-row justify-start gap-4">
-        <div class="flex-1"></div>
-        <div class="flex-[3] relative">
-            <div class="absolute z-50 px-4">
+    <div class="project-list  w-full flex flex-row justify-center  gap-4">
+        <!-- <div class="flex-1"></div> -->
+        <div class="relative w-full contents">
+            <div class="absolute z-50 px-4 ">
                 { projects && projects.length > 0 && (
-                        <ul class="my-[50px]">
+                        <div class="my-[50px] border-2 border-red-400">
                             {projects.map((project) => (
-                                <li class="p-4 mb-4">
+                                <div class="p-4 mb-4 border-4 flex flex-col justify-center items-center max-w-md">
                                     {project.image && (
-                                        <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
-                                            <img
-                                                class="w-full rounded-xl mb-[20px] will-change-transform"
-                                                src={project.image.url}
-                                                alt="A description of my image."
-                                                transition:name={`image-${project.id}`}
-                                                transition:animate={myFade}
-                                            />
-                                        </a>
+                                            <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
+                                                <img
+                                                    class="w-full h-[540px] object-cover rounded-xl mb-[20px] will-change-transform "
+                                                    src={project.image.url}
+                                                    alt="A description of my image."
+                                                    transition:name={`image-${project.id}`}
+                                                    transition:animate={myFade}
+                                                />
+                                            </a>
                                     )}
     
                                     <a href={`/projects/${project.slug}/`}>
-                                        <span
-                                            class="font-bold text-2xl"
+                                        <div
+                                            class="font-sans text-lg max-w-lg text-balance"
                                             transition:name={`link-${project.id}`}
                                             transition:animate="none"
                                         >
-                                            {project.name}
-                                        </span>
-
+                                            {project.name},
+                                            <br>
+                                            {project.excerpt}
+                                        </div>
+                                       
                                     </a>
-                                </li>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
                     ) }
             </div>
         </div>
