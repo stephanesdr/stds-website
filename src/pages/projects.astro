@@ -50,11 +50,11 @@ const myFade = {
                 { projects && projects.length > 0 && (
                         <div class="my-[50px]">
                             {projects.map((project) => (
-                                <div class="p-4 mb-4 border-4 flex flex-col justify-center items-center max-w-md">
+                                <div class="p-4 mb-4 flex flex-col justify-center items-center max-w-md will-change-transform">
                                     {project.image && (
                                             <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
                                                 <img
-                                                    class="w-full h-[540px] object-cover rounded-xl mb-[20px] will-change-transform "
+                                                    class="w-full h-[460px] object-cover rounded-xl mb-[20px] will-change-transform"
                                                     src={project.image.url}
                                                     alt="A description of my image."
                                                     transition:name={`image-${project.id}`}
