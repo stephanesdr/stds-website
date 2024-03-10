@@ -43,9 +43,9 @@ try {
         <!-- center-col -->
         <div class="md:flex-[3] relative">
            
-            <div class="max-w-md mx-auto">
+            <div class="max-w-sm flex flex-col mx-auto items-center ">
                 {project.image && <img
-                    class="w-full min-h-[540px] object-cover will-change-transform items-center"
+                    class="w-[320px] min-h-[410px] object-cover will-change-transform items-center"
                     src={project.image.url}
                     alt="A description of my image."
                     transition:name={`image-${project.id}`}
@@ -67,7 +67,7 @@ try {
                 >
                     {project.name},
                     <br>
-                    {project.excerpt}
+                    <p class="text-balance">{project.excerpt}</p>
     
                 </span>
 

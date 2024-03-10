@@ -1,7 +1,11 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import { useCallback, useMemo } from "react";
 import type Project from "@interfaces/project";
 import {simpleSchema as projectSchema} from "@interfaces/project";
+import HygraphVideo from "@components/HygraphVideoComponent";
+import HygraphImage from "@components/HygraphImageComponent";
+
 
 const query = {
     method: "POST",
@@ -19,6 +23,7 @@ const query = {
 const response = await fetch(import.meta.env.ASTRO_APP_HYGRAPH_ENDPOINT, query);
 const json = await response.json();
 const projects: Project[] = json.data.projects;
+
 
 
 const anim = {
@@ -48,13 +53,13 @@ const myFade = {
         <div class="relative w-full contents">
             <div class="absolute z-50 px-4 ">
                 { projects && projects.length > 0 && (
-                        <div class="my-[50px]">
+                        <div class="my-[50px] border-4">
                             {projects.map((project) => (
-                                <div class="p-4 mb-4 flex flex-col justify-center items-center max-w-md will-change-transform">
+                                <div class="p-4 mb-4 flex flex-col justify-center items-center max-w-md will-change-transform ">
                                     {project.image && (
                                             <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
                                                 <img
-                                                    class="w-full h-[460px] object-cover rounded-xl mb-[20px] will-change-transform"
+                                                    class="w-[320px] h-[360px] object-cover rounded-xl mb-[20px] will-change-transform"
                                                     src={project.image.url}
                                                     alt="A description of my image."
                                                     transition:name={`image-${project.id}`}

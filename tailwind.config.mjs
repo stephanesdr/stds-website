@@ -17,7 +17,7 @@ export default {
                 xs: ['12px', '13.5px'],
                 sm: ['15px', '18px'],
                 base: ['17px', '21px'],
-                lg: ['28px', '34px'],
+                lg: ['21px', '28px'],
                 xl: ['56px', '64px'],
             },
 			fontFamily: {
