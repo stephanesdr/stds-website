@@ -32,7 +32,7 @@ export default function HeaderComponent({ type, children }: {
             <nav 
                 className={cn(
                     "flex flex-col md:flex-row items-center flex-wrap justify-between gap-4 py-4",
-                    $debug ? 'border border-red-200' : '',
+                    // $debug ? 'border border-red-200' : '',
                     type !== HeaderType.Project ? "boxed" : "" 
                 )}
             >
