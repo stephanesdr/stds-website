@@ -53,7 +53,7 @@ const myFade = {
         <div class="relative w-full contents">
             <div class="absolute z-50 px-4 ">
                 { projects && projects.length > 0 && (
-                        <div class="my-[50px] border-4">
+                        <div class="my-[50px]">
                             {projects.map((project) => (
                                 <div class="p-4 mb-4 flex flex-col justify-center items-center max-w-md will-change-transform ">
                                     {project.image && (
@@ -70,7 +70,7 @@ const myFade = {
     
                                     <a href={`/projects/${project.slug}/`}>
                                         <div
-                                            class="font-sans text-lg max-w-lg text-balance"
+                                            class="font-sans text-lg max-w-[320px] text-balance"
                                             transition:name={`link-${project.id}`}
                                             transition:animate="none"
                                         >
