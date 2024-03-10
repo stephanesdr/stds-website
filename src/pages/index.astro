@@ -42,12 +42,12 @@ console.log(indexElements[0].image?.url)
 				<div class="w-full h-full flex flex-col gap-10 justify-start items-center">
 					{indexElements.map((index) => ( 
 			
-							<div class="flex flex-1 flex-col w-3/5 justify-start pt-4">
+							<div class="flex flex-1 flex-col w-3/5 justify-center pt-4">
 								{index.image && (
 									
 										<HygraphVideo
 											className={cn(
-											" w-full h-full object-cover object-center overflow-hidden rounded-3xl")}
+											" w-full h-4/5 object-cover object-center overflow-hidden rounded-3xl")}
 											src={index.image.url}
 											width={index.image.width}
 											height={index.image.height}
@@ -56,13 +56,13 @@ console.log(indexElements[0].image?.url)
 								
 								)}
 							</div>
-							<div class="flex flex-col w-full border-4 justify-end">
+							<div class="flex flex-col w-full  justify-end">
 								<div class="w-full">
 									<h2 class="text-left font-serif text-lg font-normal text-black max-w-lg text-balance">
 										{index.title}
 									</h2>
 								</div>
-								<div class="border py-4">
+								<div class=" py-4">
 									<p>Follow</p>
 									<div class="flex flex-row gap-2">
 										<a href={index.linkedInUrl}><LinkedIn /></a>
