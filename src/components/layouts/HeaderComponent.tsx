@@ -26,6 +26,7 @@ export default function HeaderComponent({ type, children }: {
                     "header w-full relative",
                     type == HeaderType.Projects ? "header--type-projects" : "",
                    type == HeaderType.Project ? "header--type-project" : "",
+                   type == HeaderType.Home ? "header--type-home" : "",
                 )
             }
         >
