@@ -18,7 +18,7 @@ export default {
                 sm: ['15px', '18px'],
                 base: ['17px', '21px'],
                 lg: ['21px', '28px'],
-                xl: ['56px', '64px'],
+                xl: ['34px', '40px'],
             },
 			fontFamily: {
 				sans: ['Interphase', ...defaultTheme.fontFamily.sans],
