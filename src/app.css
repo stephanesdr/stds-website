@@ -47,8 +47,18 @@
   }
 
 
-
 @layer components {
+  .with-transition[data-transition-name="project-card"] {
+    view-transition-name: project-card;
+  }
+
+  .with-transition[data-transition-name="project-description"] {
+    view-transition-name: project-description;
+  }
+
+  .with-transition[data-transition-name="main-nav"] {
+    view-transition-name: main-nav;
+  }
 
   .boxed {
     @apply container mx-auto
@@ -71,4 +81,5 @@
  }
 
 }
+
 
