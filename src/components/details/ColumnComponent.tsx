@@ -24,7 +24,7 @@ const $isDebug = computed(debug, debug => {
 })
 
 export default function ColumnComponent({ column, scrollYProgress, index }: ColumnProps) {
-    const scrollTransformed = useSpring(scrollYProgress);
+    const scrollTransformed = useSpring(scrollYProgress, {stiffness:55, damping: 10});
     const $debug = useStore($isDebug)
     
     const y = useTransform(scrollTransformed, [0, 1],

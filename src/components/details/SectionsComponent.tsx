@@ -37,12 +37,12 @@ export default function Sections({ project }: SectionsProps) {
       }, [project.sections])
     
     return  <>
-        <motion.ul className={cn("project__sections", "overflow-hidden")}
+        <motion.div className={cn("project__sections", "overflow-hidden")}
             initial={"closed"}
             animate={show ? "open" : "closed"}
             variants={variants}>
             {project.sections && project.sections.length > 0 && project.sections.map(section => <SectionComponent projectSize={project.defaultSize} startIndexAt={columnIndexes[section.id]} key={section.id} section={section} />)}
         
-        </motion.ul>
+        </motion.div>
     </>
 }

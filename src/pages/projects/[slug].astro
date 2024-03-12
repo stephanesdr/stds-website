@@ -36,35 +36,48 @@ try {
 
 <Layout title="My main page">
     <div class="project-list boxed w-full flex flex-row justify-start gap-4">
-        <div class="flex-1"></div>
-        <div class="flex-[3] relative">
+
+        <!-- left-col -->
+        <div class="md:flex-1"></div>
+
+        <!-- center-col -->
+        <div class="md:flex-[3] relative">
            
-            {project.image && <img
-                class="w-full mb-[50px] will-change-transform"
-                src={project.image.url}
-                alt="A description of my image."
-                transition:name={`image-${project.id}`}
-                transition:animate="none"
-            />}
+            <div class="max-w-sm flex flex-col mx-auto items-center ">
+                {project.image && <img
+                    class="w-[320px] min-h-[410px] object-cover will-change-transform items-center"
+                    src={project.image.url}
+                    alt="A description of my image."
+                    transition:name={`image-${project.id}`}
+                    transition:animate="none"
+                />}
+            </div>
 
             <a href="/projects" 
-                class="fixed top-1 left-1"
+                class="fixed top-1 left-1 z-[999] inline-flex h-12 w-auto p-4 bg-slate-200 items-center text-black"
                 transition:name={`back`} 
                 transition:animate={`slide`}
             >&larr; Back</a>
 
-            <div>
+            <div class="flex flex-col py-20">
                 <span
-                    class="font-bold text-2xl"
+                    class="font-sans text-lg max-w-lg text-balance "
                     transition:name={`link-${project.id}`}
                     transition:animate="none"
                 >
-                    {project.name}
+                    {project.name},
+                    <br>
+                    <p class="text-balance">{project.excerpt}</p>
+    
                 </span>
 
+                <!-- <div class="p-8 font-serif font-normal text-lg text-balance">{project.excerpt}</div> -->
                 
             </div>
         </div>
+
+        <!-- right col -->
+
         <div class="flex-1"></div>
     </div>
 
@@ -75,5 +88,9 @@ try {
             />
         )
     }
+    <div class="boxed">
+        <p class="w-full  max-w-5xl text-pretty px-5 pb-44 pt-10 text-lg font-serif">{project.description}</p>
+      
+    </div>
 
 </Layout>

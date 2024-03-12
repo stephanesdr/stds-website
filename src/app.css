@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+    /* Font serif */
+
+    @font-face {
+      font-family: 'Tekst';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('../public/fonts/Tekst-DRoman.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Tekst';
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+      src: url('../public/fonts/Tekst-DItalic.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Tekst';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('../public/fonts/Tekst-DBold.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Tekst';
+      font-style: italic;
+      font-weight: 600;
+      font-display: swap;
+      src: url('../public/fonts/Tekst-DBoldItalic.woff2') format('woff2');
+    }
+
+    /* Font Sans */
+
+    @font-face {
+        font-family: 'Interphase';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url('../public/fonts/TTInterphases-demi.woff2') format('woff2');
+      }
+  }
+
+
+
+@layer components {
+
+  .boxed {
+    @apply container mx-auto
+ }
+
+ .header--type-home {
+  @apply z-[9999];
+ }
+
+.header--type-projects {
+     @apply z-50  md:!fixed flex flex-col md:flex-row items-center justify-center h-auto md:h-0 top-0 md:top-1/2  translate-y-0 md:-translate-y-1/2
+ }
+
+ .header--type-projects > nav {
+     @apply w-full
+ }
+
+ .header--type-project {
+  @apply hidden
+ }
+
+}
+

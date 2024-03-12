@@ -86,7 +86,7 @@ export default function SectionComponent({ section, projectSize, startIndexAt = 
 
     }, [section, projectSize]);
 
-    return <li
+    return <div
         ref={scrollRef}
         style={sectionWrapperStyle}
         className={cn("project__sections__item", "w-full")}
@@ -111,5 +111,5 @@ export default function SectionComponent({ section, projectSize, startIndexAt = 
             {size === Size.xxl && <div className={cn("w-full mx-auto max-w-screen-2xl")}>{columns}</div>}
         </>}
     
-    </li>
+    </div>
 }
