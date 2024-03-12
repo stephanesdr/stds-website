@@ -2,6 +2,7 @@ import { debug } from "@stores/AppStore";
 import { useStore } from "@nanostores/react";
 import { cn } from "@utils/cn";
 import { computed } from "nanostores";
+import { useMemo } from "react";
 
 enum HeaderType {
     "Projects" = "projects",
@@ -10,38 +11,34 @@ enum HeaderType {
 }
 
 const $isDebug = computed(debug, debug => {
-    return debug == '0' ? false : true 
+    return debug == '0' ? false : true
 })
 
 export default function HeaderComponent({ type, children }: {
     type: HeaderType,
     children: React.ReactNode
 }) {
-    
+
     const $debug = useStore($isDebug)
 
-    return <>
-        <header
+    const nav = useMemo(() => {
+        return <nav
             className={cn(
-                    "header w-full relative",
-                    type == HeaderType.Projects ? "header--type-projects" : "",
-                   type == HeaderType.Project ? "header--type-project" : "",
-                   type == HeaderType.Home ? "header--type-home" : "",
-                )
-            }
+                "flex flex-row items-center flex-wrap justify-between gap-4 p-4",
+                $debug ? 'border border-red-200' : '',
+                type !== HeaderType.Project ? "boxed" : ""
+            )}
         >
-            <nav 
-                className={cn(
-                    "flex flex-row items-center flex-wrap justify-between gap-4 p-4",
-                    $debug ? 'border border-red-200' : '',
-                    type !== HeaderType.Project ? "boxed" : "" 
-                )}
-            >
-                {children}
-                
-            </nav>
-            
-        </header>
+            {children}
+
+        </nav>
+    }, [type, $debug, children])
+
+    return <>
+        {type == HeaderType.Projects && <header className={"header w-full relative z-30 header--type-projects"}>{nav}</header>}
+        {type == HeaderType.Project && <header className={"header w-full relative z-30 header--type-project"}>{nav}</header>}
+        {type == HeaderType.Home && <header className={"header w-full relative z-30 header--type-home"}>{nav}</header>}
+
         <button type="button" className={
             cn(
                 'text-white font-bold p-1 text-sm rounded fixed z-50 top-1 right-1 cursor-pointer',

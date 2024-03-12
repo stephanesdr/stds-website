@@ -24,27 +24,6 @@ const response = await fetch(import.meta.env.ASTRO_APP_HYGRAPH_ENDPOINT, query);
 const json = await response.json();
 const projects: Project[] = json.data.projects;
 
-
-
-const anim = {
-  old: {
-    name: 'fadeIn',
-    duration: '0.2s',
-    easing: 'ease-out',
-    fillMode: 'forwards',
-  },
-  new: {
-    name: 'fadeOut',
-    duration: '0.3s',
-    easing: 'ease-out',
-    fillMode: 'backwards',
-  }
-};
-
-const myFade = {
-  forwards: anim,
-  backwards: anim,
-};
 ---
 
 <Layout title="My main page">
@@ -52,38 +31,37 @@ const myFade = {
         <!-- <div class="flex-1"></div> -->
         <div class="relative w-full contents">
             <div class="absolute z-50">
-                { projects && projects.length > 0 && (
-                        <div class="my-[50px]">
-                            {projects.map((project) => (
-                                <div class="p-4 sm:p-0 mb-4 flex flex-col justify-center items-center max-w-md will-change-transform ">
-                                    {project.image && (
-                                            <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
-                                                <img
-                                                    class=" w-full sm:w-[320px] h-[360px] object-cover rounded-xl mb-[20px] will-change-transform"
-                                                    src={project.image.url}
-                                                    alt="A description of my image."
-                                                    transition:name={`image-${project.id}`}
-                                                    transition:animate={myFade}
-                                                />
-                                            </a>
-                                    )}
-    
-                                    <a href={`/projects/${project.slug}/`}>
-                                        <div
-                                            class="font-sans text-lg max-w-[320px] text-balance"
-                                            transition:name={`link-${project.id}`}
-                                            transition:animate="none"
-                                        >
-                                            {project.name},
-                                            <br>
-                                            {project.excerpt}
-                                        </div>
-                                       
+                {projects && projects.length > 0 && (
+                    <div class="my-[50px]">
+                        {projects.map((project) => (
+                            <div 
+                                class="p-4 sm:p-0 mb-4 flex flex-col justify-center items-center max-w-md will-change-transform"
+                            >
+                                {project.image && (
+                                    <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
+                                        <img
+                                            class="card w-full sm:w-[320px] h-[360px] object-cover rounded-xl mb-[20px] will-change-transform"
+                                            data-transition-name="project-card"
+                                            src={project.image.url}
+                                            alt="A description of my image."
+                                        />
                                     </a>
-                                </div>
-                            ))}
-                        </div>
-                    ) }
+                                )}
+
+                                <a href={`/projects/${project.slug}/`}>
+                                    <div class="font-sans text-lg max-w-[320px]" data-transition-name="project-description">
+                                        {project.name},
+                                        <br>
+                                        <p class="text-balance">
+                                            {project.excerpt}
+                                        </p>
+                                    </div>
+                                    
+                                </a>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
         <div class="flex-1"></div>
