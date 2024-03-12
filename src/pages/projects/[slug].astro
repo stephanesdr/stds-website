@@ -72,16 +72,17 @@ try {
         <div class="flex-1"></div>
     </div>
 
-    <!-- { project && (
+    {project && (
             <SectionsComponent
                 project={project}
                 client:only="react"
             />
         )
     }
+    
     <div class="boxed">
         <p class="w-full  max-w-5xl text-pretty px-5 pb-44 pt-10 text-lg font-serif">{project.description}</p>
       
-    </div> -->
+    </div>
 
 </Layout>
