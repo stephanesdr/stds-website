@@ -26,7 +26,6 @@ navigation.addEventListener('navigate', (navigateEvent) => {
 })
 
 function handleProjectTransition(navigateEvent, toPath, fromPath) {
-    console.log('handleProjectTransition')    
     navigateEvent.intercept({
         scroll: 'manual',
         async handler() {
@@ -73,8 +72,6 @@ function handleProjectTransition(navigateEvent, toPath, fromPath) {
 }
 
 function handleHomeTransition(navigateEvent, toPath, fromPath) {
-    console.log('handleHomeTransition')    
-
     navigateEvent.intercept({
         scroll: 'manual',
         async handler() {
