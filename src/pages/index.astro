@@ -12,6 +12,9 @@ import type Index from "@interfaces/index";
 import {simpleSchema as indexSchema} from "@interfaces/index";
 
 
+
+
+
 const query = {
   method: "POST",
   headers: { "Content-Type": "application/json" },
@@ -48,11 +51,12 @@ console.log(indexElements[0].image?.url)
 										<a href="/projects" class=" h-full md:h-3/5 lg:h-4/5">
 											<HygraphVideo
 												className={cn(
-												" w-full h-full object-cover object-center overflow-hidden rounded-3xl")}
+												"w-full h-full object-cover object-center overflow-hidden rounded-3xl")}
 												src={index.image.url}
 												width={index.image.width}
 												height={index.image.height}
 												mimeType={index.image.mimeType}
+												client:only="react"
 											/>
 										</a>
 								
@@ -75,8 +79,7 @@ console.log(indexElements[0].image?.url)
 							</div>
 						))}	
 					</div>
-					)}
-
+				)}
 	</main>
 </Layout>
 <!-- </WavyBackground> -->

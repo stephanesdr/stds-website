@@ -1,7 +1,7 @@
 ---
 import '../app.css'
-import { ViewTransitions } from 'astro:transitions';
-import HeaderComponent from "@components/layouts/HeaderComponent";
+import '../view-transitions.css'
+import DebugButton from '@components/DebugButton'
 import FooterComponent from "@components/layouts/FooterComponent";
 
 interface Props {
@@ -40,38 +40,49 @@ const type = ((page) => {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ViewTransitions />
+		<script src="../../scripts/navigation.js"></script>
+		
 	</head>
 	<body>
-        <div class="wrapper min-h-screen h-screen flex flex-col">
-            <HeaderComponent type={type} client:only="react">
-				<div
-					transition:name={`logo`}
-					transition:animate="none"
-					class="flex-1 will-change-transform"
-					class:list={[{'-translate-x-[500px]': type == HeaderType.Project}]}
-				>
-					<a href="/">
-						<h1 class="font-sans uppercase text-sm">ST.ST <small class="font-serif lowercase text-sm">Designs</small>,</h1>
-					</a>
+        <div id="wrapper" class="wrapper min-h-screen h-screen flex flex-col">
+			<header class="header w-full relative z-30"
+				class:list={[
+					{'header--type-projects': type == HeaderType.Projects},
+					{'header--type-project': type == HeaderType.Project},
+					{'header--type-home': type == HeaderType.Home}
+				]}
+			>
+				<nav
+					class="flex flex-row items-center flex-wrap justify-between gap-4 p-4"
+					class:list={[{boxed : type !== HeaderType.Project}]}>
+					
+					<div
+						class="flex-1 will-change-transform with-transition"
+						class:list={[{'-translate-x-[500px]': type == HeaderType.Project}]}
+						data-transition-name="main-nav-logo"
+					>
 
-				</div>
-				<div class="flex-[3]"></div>
-				<ul
-					transition:name={`nav-right`}
-					transition:animate="none"
-					class="flex-1 flex flex-row justify-end items-center gap-4 will-change-transform"
-					class:list={[{'translate-x-[500px]': type == HeaderType.Project}]}
-				>
-					{
-						links.map((link) => (
-							<li>
-								<a class="font-sans uppercase text-xs" href={link.href}>{link.label}</a>
-							</li>
-						))
-					}
-				</ul>
-			</HeaderComponent>
+						<a href="/">
+							<h1 class="font-sans uppercase text-sm">ST.ST <small class="font-serif lowercase text-sm">Designs</small>,</h1>
+						</a>
+
+					</div>
+					<div class="flex-[3]"></div>
+					<ul
+						class="flex-1 flex flex-row justify-end items-center gap-4 will-change-transform with-transition"
+						class:list={[{'translate-x-[500px]': type == HeaderType.Project}]}
+						data-transition-name="main-nav-links"
+					>
+						{
+							links.map((link) => (
+								<li>
+									<a class="font-sans uppercase text-xs" href={link.href}>{link.label}</a>
+								</li>
+							))
+						}
+					</ul>
+				</nav>
+			</header>
 
             <main class="flex-1 relative">
                 <slot />
@@ -80,8 +91,11 @@ const type = ((page) => {
             <FooterComponent client:only="react">
 				<p class="text-xs ">©2024 Stéphane Stadler</p class="text-sm">
 			</FooterComponent>
+
         </div>
-        
+		
+		<DebugButton client:only="react">
+
 	</body>
 </html>
 
