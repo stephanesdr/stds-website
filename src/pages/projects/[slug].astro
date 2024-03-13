@@ -3,6 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import type Project from "@interfaces/project";
 import  {schema as projectSchema} from "@interfaces/project";
 import SectionsComponent from "@components/details/SectionsComponent";
+import ProjectDescription from "@components/details/ProjectDescription";
 
 const { slug } = Astro.params;
 
@@ -61,7 +62,6 @@ try {
                     </p>
     
                 </div>
-
                 <!-- <div class="p-8 font-serif font-normal text-lg text-balance">{project.excerpt}</div> -->
                 
             </div>
@@ -79,10 +79,7 @@ try {
             />
         )
     }
-    
-    <div class="boxed">
-        <p class="w-full  max-w-5xl text-pretty px-5 pb-44 pt-10 text-lg font-serif">{project.description}</p>
-      
-    </div>
+
+    <ProjectDescription project={project} client:only="react">
 
 </Layout>

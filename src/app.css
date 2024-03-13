@@ -48,17 +48,6 @@
 
 
 @layer components {
-  .with-transition[data-transition-name="project-card"] {
-    view-transition-name: project-card;
-  }
-
-  .with-transition[data-transition-name="project-description"] {
-    view-transition-name: project-description;
-  }
-
-  .with-transition[data-transition-name="main-nav"] {
-    view-transition-name: main-nav;
-  }
 
   .boxed {
     @apply container mx-auto
@@ -66,19 +55,19 @@
 
  .header--type-home {
   @apply z-[9999];
- }
+ } 
 
 .header--type-projects {
      @apply z-50  md:!fixed flex flex-col md:flex-row items-center justify-center h-auto md:h-0 top-0 md:top-1/2  translate-y-0 md:-translate-y-1/2
  }
-
+ 
  .header--type-projects > nav {
      @apply w-full
- }
+ } 
 
  .header--type-project {
   @apply hidden
- }
+ } 
 
 }
 

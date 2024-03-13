@@ -1,0 +1,31 @@
+@keyframes fade-in {
+  from { opacity: 1; }
+}
+
+@keyframes fade-out {
+  to { opacity:0; }
+}
+
+/* ::view-transition-old(root) {
+  animation: 300ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 500ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in;
+} */
+
+.with-transition[data-transition-name="project-card"] {
+  view-transition-name: project-card;
+}
+
+.with-transition[data-transition-name="project-description"] {
+  view-transition-name: project-description;
+}
+
+.with-transition[data-transition-name="main-nav-logo"] {
+  view-transition-name: main-nav-logo;
+}
+
+.with-transition[data-transition-name="main-nav-links"] {
+  view-transition-name: main-nav-links;
+}
