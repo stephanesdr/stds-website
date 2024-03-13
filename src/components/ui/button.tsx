@@ -1,6 +1,4 @@
-"use client";
 import { cn } from "../../utils/cn";
-
 
 type ButtonProps = {
     children?: React.ReactNode;
