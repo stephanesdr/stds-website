@@ -29,7 +29,7 @@ function handleProjectTransition(navigateEvent, toPath, fromPath) {
     navigateEvent.intercept({
         scroll: 'manual',
         async handler() {
-            const response = await fetch('http://localhost:4321' + toPath)
+            const response = await fetch('/' + toPath)
             const data = await response.text()
 
             if (!document.startViewTransition) {
@@ -75,7 +75,7 @@ function handleHomeTransition(navigateEvent, toPath, fromPath) {
     navigateEvent.intercept({
         scroll: 'manual',
         async handler() {
-            const response = await fetch('http://localhost:4321' + toPath)
+            const response = await fetch('/' + toPath)
             const data = await response.text()
 
             if (!document.startViewTransition) {
