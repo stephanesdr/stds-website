@@ -1,0 +1,72 @@
+[
+    {
+      "school": "Esma",
+      "city": "Montpellier",
+      "certificate":
+        "Degree in Illustration Concept Art.",
+      "note": "I learned the art of composition, color and its subtleties, the coherence of a work and the relationships that can be achieved between texts and images.",
+      "yearStart": "2009",
+      "yearEnd": "to 2011"
+    },
+    {
+      "school": "ESAD",
+      "city": "Valence",
+      "certificate":
+        "Degree in Art and design",
+      "note": "A 3-year exploration rich in deconstruction, reflection and art history. I started coding here with tools like procession, learned to make offset prints, built furniture and display devices in connection with my prints and artists' books. Everything could be created on site. A school rich in learning.",
+      "yearStart": "2012",
+      "yearEnd": "to 2015"
+    },
+    {
+      "school": "Freelance",
+      "city": "Nomad",
+      "certificate":
+        "Start my journey as a graphic designer",
+      "note": "Prospecting for clients, discovering the different talents needed for the job and this freelance status. I also decided to continue my studies and complete a master.",
+      "yearStart": "start",
+      "yearEnd": "in 2014"
+    },
+    {
+      "school": "Arba-ESA",
+      "city": "Bruxelles",
+      "certificate": 
+          "Master MULTI",
+      "note": "The Master in Editorial Practices (MULTI) is a research and production degree program. The field of investigation and experimentation is that of the multiplication of editorial and digital perspectives. This Master's program focuses on the practical and theoretical study of reproduction practices: print, book, object, photography, digital and/or online media, audiovisual...",
+      "yearStart": "2015",
+      "yearEnd": "to 2017"
+    },
+    {
+      "school": "The Hacking Project",
+      "city": "Montpellier",
+      "certificate":
+        "Developper training",
+      "note": "1200 hours of training in 24 weeks to learn the basics of web development: frontend, backend, software engineering, JS framework, agile method, project management, gitflow, etc.",
+      "yearStart": "2018",
+      "yearEnd": "to 2019"
+    },
+    {
+      "school": "UX.UI Researcher",
+      "city": "Bruxelles",
+      "certificate":
+        "Inter-university certificate in User Experience Design and Research (UX)",
+      "note": "Ensuring a good user experience is an essential lever for project and service quality. In this certificate i learned how to manage a UX project.How to empathize with the user and understand their needs and expectations But also all the fundamentals for correctly defining user needs, solving problems, designing and testing user experience proposals to improve ergonomics and emotional impact.",
+      "yearStart": "2021",
+      "yearEnd": ""
+    },
+    {
+      "school": "Feelink studio",
+      "city": "Bruxelles",
+      "certificate": "Work as interactive designer",
+      "note": "feelink is a graphic design studio based in Brussels & Paris. It creates and develops complete brand identities.",
+      "yearStart": "2019",
+      "yearEnd": "to 2024"
+    },
+    {
+      "school": "Roadmap",
+      "city": "France, Belgium",
+      "certificate": "From 2009 to 2024",
+      "note": "Scroll below to explore my journey",
+      "yearStart": "Certificate",
+      "yearEnd": "and roles"
+    }
+  ]

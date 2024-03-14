@@ -27,10 +27,10 @@ const projects: Project[] = json.data.projects;
 ---
 
 <Layout title="My main page">
-    <div class="project-list  w-full flex flex-row justify-center  gap-4">
+    <div class="project-list  w-full flex flex-row justify-center  gap-4 border-4 border-violet-500">
         <!-- <div class="flex-1"></div> -->
-        <div class="relative w-full contents">
-            <div class="w-full relative">
+        <div class="relative w-full contents ">
+            <div class="w-full relative ">
                 {projects && projects.length > 0 && (
                     <div class="w-full my-[50px] flex flex-col items-center">
                         {projects.map((project) => (
@@ -38,7 +38,7 @@ const projects: Project[] = json.data.projects;
                                 {project.image && (
                                     <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
                                         <img
-                                            class="card w-full h-full object-cover rounded-2xl mb-[20px] "
+                                            class="card card-projects w-full h-full object-cover hover:rounded-3xl mb-[20px] shadow-xl hover:shadow-lg"
                                             data-transition-name="project-card"
                                             src={project.image.url}
                                             alt="A description of my image."
@@ -47,7 +47,7 @@ const projects: Project[] = json.data.projects;
                                 )}
 
                                 <a href={`/projects/${project.slug}/`}>
-                                    <div class="font-sans text-lg max-w-lg text-balance " data-transition-name="project-description">
+                                    <div class="font-sans text-lg max-w-lg w-[32rem] text-balance pt-20 pb-10 hidden" data-transition-name="project-description">
                                         {project.name},
                                         <br>
                                         <p class="text-balance">
@@ -65,3 +65,17 @@ const projects: Project[] = json.data.projects;
         <div class="flex-1"></div>
     </div>
 </Layout>
+
+
+<style is:inline>
+
+    .card-projects {
+    transition: all ease-in-out 0.15s;
+    position: relative;
+  }
+
+  .card-projects:hover {
+    transform: scale(0.97);
+  }
+
+</style>
