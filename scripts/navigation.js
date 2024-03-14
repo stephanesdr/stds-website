@@ -25,11 +25,11 @@ navigation.addEventListener('navigate', (navigateEvent) => {
     }
 })
 
-function handleProjectTransition(navigateEvent, toPath, fromPath) {    
+function handleProjectTransition(navigateEvent, toPath, fromPath) {
     navigateEvent.intercept({
         scroll: 'manual',
         async handler() {
-            const response = await fetch('http://localhost:4321' + toPath)
+            const response = await fetch(toPath)
             const data = await response.text()
 
             if (!document.startViewTransition) {
@@ -75,7 +75,7 @@ function handleHomeTransition(navigateEvent, toPath, fromPath) {
     navigateEvent.intercept({
         scroll: 'manual',
         async handler() {
-            const response = await fetch('http://localhost:4321' + toPath)
+            const response = await fetch(toPath)
             const data = await response.text()
 
             if (!document.startViewTransition) {
@@ -101,7 +101,10 @@ function handleHomeTransition(navigateEvent, toPath, fromPath) {
                     
                 }
 
-                if (prevPageScroll) document.documentElement.scrollTop = prevPageScroll
+                if (prevPageScroll) {
+                    document.documentElement.scrollTop = prevPageScroll
+                    prevPageScroll = 0;
+                } 
             })
         },
     })

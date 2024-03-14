@@ -1,0 +1,27 @@
+:root {
+  view-transition-name: none
+}
+
+::view-transition-old(root) {
+  animation: none;
+}
+
+::view-transition-new(root) {
+  animation: none;
+} 
+
+.with-transition[data-transition-name="project-card"] {
+  view-transition-name: project-card;
+}
+
+.with-transition[data-transition-name="project-description"] {
+  view-transition-name: project-description;
+}
+
+.with-transition[data-transition-name="main-nav-logo"] {
+  view-transition-name: main-nav-logo;
+}
+
+.with-transition[data-transition-name="main-nav-links"] {
+  view-transition-name: main-nav-links;
+}

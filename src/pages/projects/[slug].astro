@@ -3,6 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import type Project from "@interfaces/project";
 import  {schema as projectSchema} from "@interfaces/project";
 import SectionsComponent from "@components/details/SectionsComponent";
+import ProjectDescription from "@components/details/ProjectDescription";
 
 const { slug } = Astro.params;
 
@@ -43,7 +44,7 @@ try {
         <div class="md:flex-[3] relative">
             <div class="max-w-sm flex flex-col mx-auto items-center">
                 {project.image && <img
-                    class="card w-[320px] min-h-[410px] object-cover will-change-transform items-center with-transition"
+                    class="card w-full h-full object-cover rounded-none items-center with-transition "
                     data-transition-name="project-card"
                     src={project.image.url}
                     alt="A description of my image."
@@ -61,7 +62,6 @@ try {
                     </p>
     
                 </div>
-
                 <!-- <div class="p-8 font-serif font-normal text-lg text-balance">{project.excerpt}</div> -->
                 
             </div>
@@ -79,10 +79,7 @@ try {
             />
         )
     }
-    
-    <div class="boxed">
-        <p class="w-full  max-w-5xl text-pretty px-5 pb-44 pt-10 text-lg font-serif">{project.description}</p>
-      
-    </div>
+
+    <ProjectDescription project={project} client:only="react">
 
 </Layout>

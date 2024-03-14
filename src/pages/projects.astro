@@ -30,17 +30,15 @@ const projects: Project[] = json.data.projects;
     <div class="project-list  w-full flex flex-row justify-center  gap-4">
         <!-- <div class="flex-1"></div> -->
         <div class="relative w-full contents">
-            <div class="absolute z-50">
+            <div class="w-full relative">
                 {projects && projects.length > 0 && (
-                    <div class="my-[50px]">
+                    <div class="w-full my-[50px] flex flex-col items-center">
                         {projects.map((project) => (
-                            <div 
-                                class="p-4 sm:p-0 mb-4 flex flex-col justify-center items-center max-w-md will-change-transform"
-                            >
+                            <div class="relative z-50 p-4 sm:p-0 mb-4 flex flex-col justify-center items-center max-w-md">
                                 {project.image && (
                                     <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
                                         <img
-                                            class="card w-full sm:w-[320px] h-[360px] object-cover rounded-xl mb-[20px] will-change-transform"
+                                            class="card w-full h-full object-cover rounded-2xl mb-[20px] "
                                             data-transition-name="project-card"
                                             src={project.image.url}
                                             alt="A description of my image."
@@ -49,7 +47,7 @@ const projects: Project[] = json.data.projects;
                                 )}
 
                                 <a href={`/projects/${project.slug}/`}>
-                                    <div class="font-sans text-lg max-w-[320px]" data-transition-name="project-description">
+                                    <div class="font-sans text-lg max-w-lg text-balance " data-transition-name="project-description">
                                         {project.name},
                                         <br>
                                         <p class="text-balance">

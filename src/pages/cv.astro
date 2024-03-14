@@ -8,9 +8,8 @@ import dream  from "../../public/images/dream.gif"
 import agilityDark  from "../../public/images/agility-dark.gif"
 import chair  from "../../public/images/chair.gif"
 import forward  from "../../public/images/forward.gif"
-import Curriculum, {simpleSchema as curriculumSchema} from '../interfaces/curriculum'
-
-
+import {simpleSchema as curriculumSchema} from '../interfaces/curriculum'
+import type Curriculum from '../interfaces/curriculum'
 
 const query = {
   method: "POST",
@@ -39,6 +38,7 @@ console.log(curricula[0].title)
         <Button
            className="z-50 md:px-4 py-2 rounded-md  bg-transparent text-black text-sm hover:shadow-[4px_4px_0px_0px_rgba(0,0,0)] transition duration-200"
            href="/"
+           client:only="react"
        >BACK</Button>
         <div class="container mx-auto">
          <div class="h-full w-full rounded-md flex md:items-center md:justify-center antialiased bg-grid-white/[0.02] relative overflow-hidden">
@@ -125,7 +125,7 @@ console.log(curricula[0].title)
                </div>
            </div>
           
-             <!-- <StickyScroll content={contentReversed} /> -->
+             <!-- <StickyScroll content={contentReversed} client:only="react" /> -->
            <div class=" flex flex-row justify-start underline py-8">
                <span class="p-6 md:p-8">
                  <a class="font-sans text-base uppercase" href="mailto:stadlerstephane@gmail.com">email me</a>

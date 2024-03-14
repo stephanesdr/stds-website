@@ -32,11 +32,6 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
             : [-column.distance * rF2, column.distance * rF2]
     );
 
-    const iy = useTransform(scrollTransformed, [0, 1],
-        column.direction === Direction.Up ? [-column.distance * rF1, column.distance * rF1]
-            : [column.distance * rF1, -column.distance * rF1]
-    );
-
     const columnStyle = useMemo(() => {
         let style: { [key: string]: any } = {
             y,
@@ -95,11 +90,7 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
         style={columnStyle}>
 
         {column.image && <>
-            {column.columnType === ColumnType.Image && <motion.div
-                className={cn("project__image-wrapper", "w-full overflow-hidden")}
-                style={{
-                    y: column.parallax ? iy : 0,
-                }}>
+            {column.columnType === ColumnType.Image && <div className={cn("project__image-wrapper", "w-full overflow-hidden rounded-3xl")}>
 
                 {isImage(column.image) && <HygraphImage
                     className={cn(
@@ -108,6 +99,8 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
                         "w-full"
                     )}
                     style={objectStyle}
+                    parallax={column.parallax}
+                    parallaxOrientation={(y.get() < 0 ? 'up' : 'down') as any}
                     src={column.image.url}
                     width={column.image.width}
                     height={column.image.height}
@@ -115,20 +108,18 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
 
                 {!isImage(column.image) && <p className={cn("w-full p-4 bg-red-500 text-white")}>Error: Not a valid image asset!</p>}
 
-            </motion.div>}
+            </div>}
 
-            {column.columnType === ColumnType.Video && <motion.div
-                className={cn("project__video-wrapper", "w-full overflow-hidden")}
-                style={{
-                    y: column.parallax ? iy : 0,
-                }}>
-
+            {column.columnType === ColumnType.Video && <div className={cn("project__video-wrapper", "w-full overflow-hidden")}>
+            
                 {isVideo(column.image) && <HygraphVideo
                     className={cn(
                         "project__video",
                         $debug ? "border border-green-500" : "",
                         "w-full")}
                     style={objectStyle}
+                    parallax={column.parallax}
+                    parallaxOrientation={(y.get() < 0 ? 'up' : 'down') as any}
                     src={column.image.url}
                     width={column.image.width}
                     height={column.image.height}
@@ -137,7 +128,7 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
 
                 {!isVideo(column.image) && <p className={cn("w-full p-4 bg-red-500 text-white")}>Error: Not a valid video asset!</p>}
 
-            </motion.div>}
+            </div>}
         </>}
 
         {column.columnType === ColumnType.Text && <p className={cn(

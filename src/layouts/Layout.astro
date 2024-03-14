@@ -1,6 +1,7 @@
 ---
 import '../app.css'
-import HeaderComponent from "@components/layouts/HeaderComponent";
+import '../view-transitions.css'
+import DebugButton from '@components/DebugButton'
 import FooterComponent from "@components/layouts/FooterComponent";
 
 interface Props {
@@ -28,6 +29,7 @@ const type = ((page) => {
 	return HeaderType.Home;
 
 })(currentPath);
+
 ---
 
 <!doctype html>
@@ -44,21 +46,22 @@ const type = ((page) => {
 	</head>
 	<body>
         <div id="wrapper" class="wrapper min-h-screen h-screen flex flex-col">
-			<header class="header w-full relative z-30 with-transition"
+			<header class="header w-full relative z-30"
 				class:list={[
 					{'header--type-projects': type == HeaderType.Projects},
 					{'header--type-project': type == HeaderType.Project},
 					{'header--type-home': type == HeaderType.Home}
 				]}
-				data-transition-name="main-nav"
-				>
+			>
 				<nav
 					class="flex flex-row items-center flex-wrap justify-between gap-4 p-4"
 					class:list={[{boxed : type !== HeaderType.Project}]}>
 					
 					<div
-						class="flex-1 will-change-transform"
-						class:list={[{'-translate-x-[500px]': type == HeaderType.Project}]}>
+						class="flex-1 will-change-transform with-transition"
+						class:list={[{'-translate-x-[500px]': type == HeaderType.Project}]}
+						data-transition-name="main-nav-logo"
+					>
 
 						<a href="/">
 							<h1 class="font-sans uppercase text-sm">ST.ST <small class="font-serif lowercase text-sm">Designs</small>,</h1>
@@ -67,8 +70,9 @@ const type = ((page) => {
 					</div>
 					<div class="flex-[3]"></div>
 					<ul
-						class="flex-1 flex flex-row justify-end items-center gap-4 will-change-transform"
+						class="flex-1 flex flex-row justify-end items-center gap-4 will-change-transform with-transition"
 						class:list={[{'translate-x-[500px]': type == HeaderType.Project}]}
+						data-transition-name="main-nav-links"
 					>
 						{
 							links.map((link) => (
@@ -88,8 +92,11 @@ const type = ((page) => {
             <FooterComponent client:only="react">
 				<p class="text-xs ">©2024 Stéphane Stadler</p class="text-sm">
 			</FooterComponent>
+
         </div>
-        
+		
+		<DebugButton client:only="react">
+
 	</body>
 </html>
 
