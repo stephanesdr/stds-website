@@ -12,6 +12,11 @@ export enum Priority {
     High = 2
 }
 
+export enum featuredType {
+    Image = 'Image',
+    Video = 'Video',
+}
+
 export default interface Project {
     id: string
     slug: string
@@ -35,6 +40,7 @@ export default interface Project {
         }
     }
     featured: boolean,
+    featuredType: featuredType,
     priority: Priority,
     sections: Section[]
     tags: {
@@ -68,6 +74,7 @@ export function simpleSchema() {
             }
         }
         featured
+        featuredType
         priority
         image {
             ${assetSchema()}
