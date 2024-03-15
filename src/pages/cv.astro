@@ -1,113 +1,293 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import {CvCard} from '../components/ui/cv-card'
-import {StickyScroll} from '../components/ui/sticky-scroll-reveal'
-import clients from "../../src/data/clients.json"
-import skills from "../../src/data/skills.json"
-import tools from "../../src/data/tools.json"
-import roadmap from "../../src/data/roadmap.json"
+import Layout from "../layouts/Layout.astro";
+import { CvCard } from "../components/ui/cv-card";
+import { StickyScroll } from "../components/ui/sticky-scroll-reveal";
+import { Boxes } from "../components/ui/background-boxes";
 
+import clients from "../../src/data/clients.json";
+import skills from "../../src/data/skills.json";
+import tools from "../../src/data/tools.json";
+import roadmap from "../../src/data/roadmap.json";
+import LinkedIn from "@components/utilities/linkedinIcon.astro"
+import Instagram from "@components/utilities/instagramIcon.astro"
+import Thread from "@components/utilities/threadIcon.astro"
+import type Index from "@interfaces/index";
+import {simpleSchema as indexSchema} from "@interfaces/index";
+
+const query = {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+      {
+		indices {
+		${indexSchema()}
+  }
+      }`,
+  }),
+};
+
+const response = await fetch(import.meta.env.ASTRO_APP_HYGRAPH_ENDPOINT, query);
+const json = await response.json();
+const indexElements: Index[] = json.data.indices ;
 
 ---
 
-
-<Layout title='Curriculum Vitae - Stéphane Stadler'>
-    <main class="w-full mx-auto max-w-4xl px-4 md:px-0 overflow-x-hidden">
-        <div class="container mx-auto">
-         <div class="h-full w-full rounded-md flex md:items-center md:justify-center antialiased bg-grid-white/[0.02] relative overflow-hidden">
-
-           <div class=" max-w-7xl  mx-auto relative z-10  w-full py-8 md:pt-0">
-             <h1 class="text-left font-sans uppercase text-sm py-4 font-semibold text-black">
-             curriculum vitae
-             </h1>
-             <div class="flex justify-start ">
-               <h2 class="text-left font-tekst text-lg font-normal md:px-8 md:pt-10 pb-4 text-black max-w-4xl text-balance">
-               As an interactive designer, I specialize in three key areas: branding, design, and addressing technological constraints.
-               <br /><br />
-               In branding, I take a strategic approach to creating impactful brand identities that connect with target markets. I&apos;m passionate about crafting timeless and meaningful brands.
-               <br /><br />
-               When it comes to web design, I focus on creating user-friendly interfaces that integrate brand values seamlessly. By blending design and technology, I deliver digital solutions that meet users&apos; needs and stand out in today&apos;s competitive landscape.
-               <br /><br />
-               By anticipating technological constraints in my designs, I make it easier for developers to bring my work to life. I stay up-to-date with the latest technologies and provide strategic guidance tailored to each project&apos;s unique needs, ensuring efficient and accurate development with exceptional results for both design and development teams.
-               </h2>
-           </div>
-           </div>
-         </div>
-         
-       </div>
-       <div class="container mx-auto my-4">
-           <div class="flex flex-col">
-           <div class="flex flex-col md:flex-row mb-4 bg-transparent overflow-hidden rounded-3xl">
-             <div class="flex flex-col basis-1/2">
-               <h2 class="font-tekst text-lg capitalize p-6 md:p-8">skills <br />and tools</h2>
-               <img  src="/public/images/forward.gif" width={400} class="mix-blend-color-burn" alt="La description de mon image." />
-             </div>
-             <div class="grid grid-flow-col justify-stretch basis-1/2 py-6 md:py-8">
+<Layout title="Curriculum Vitae - Stéphane Stadler" >
+  <main class="w-full mx-auto px-4 md:px-0 overflow-x-hidden bg-gradient-to-b from-0% from-white to-40% to-blue-50">
+    <!-- Start INTRO -->
+    <div class="container mx-auto mt-8">
+      <div
+        class="h-full w-full rounded-md flex md:items-center md:justify-center antialiased bg-grid-white/[0.02] relative overflow-hidden"
+      >
+        <div class="max-w-4xl mx-auto relative z-10 w-full py-8 md:pt-0">
+          <!-- <h1
+            class="text-left font-sans uppercase text-sm py-4 font-semibold text-black"
+          >
+            curriculum vitae
+          </h1> -->
+          <div class="flex flex-col justify-start">
+            <h1
+              class=" text-left font-serif text-[27px] font-normal md:px-8 md:pt-10 text-black max-w-lg text-pretty"
+            >
+              As an interactive designer, 
+              <br>I specialize in three key areas: 
+              <!-- Branding, design, and addressing technological constraints.             -->
+            </h1>
+            
+              <div class="max-w-2xl text-left font-serif text-lg font-normal md:px-8 md:pt-10 pb-4 text-black text-pretty space-y-6">
+                
                 <div class="flex flex-col">
-                 {skills.map((skill) => (
-                   <p class="text-base font-sans font-semibold text-balance max-w-md">{skill}</p>
-                 ))}
-                 </div>   
+                  <span class="font-serif text-lg  font-normal pb-2">In branding,</span>
+                  <p class="font-sans text-sm text-pretty">
+                    I take a strategic approach to creating impactful brand
+                    identities that connect with target markets. I&apos;m passionate about
+                    crafting timeless and meaningful brands.
+                  </p>
+                </div>
+  
                 <div class="flex flex-col">
-                 {tools.map((tool, index) => (
-                   <p class="text-base font-sans font-semibold text-balance max-w-md">{tool}</p>
-                 ))}
-                 </div>   
-             </div>
-           </div>
-             <div class="flex flex-col md:flex-row gap-4">
-                 <div class="flex-none bg-gradient-to-bl  bg-[#F3F3F3] rounded-3xl overflow-hidden">
-                     <h2 class="font-tekst text-lg capitalize p-8">five points</h2>
-                     <img  src="/public/images/process-dark.gif" width={375} class="mix-blend-color-burn" alt="La description de mon image." />
-                 </div>
-                 <div class="flex flex-grow">
-                     <div class="flex flex-col flex-grow gap-4 justify-between">
-                         <div class="bg-gradient-to-tl bg-[#F3F3F3] rounded-3xl basis-1/2">
-                             <CvCard title='1) what i do' body='I implement strategies at various scales, including consultancy, conceptualization, product design, and development, to create brand identities and design digital products.' />
-                         </div>
-                         <div class="bg-gradient-to-br bg-[#F3F3F3] rounded-3xl basis-1/2">
-                             <CvCard title='2) The best i do' body='Develop ideas through open-minded listening, research, and analysis. Create designs that anticipate and address developer constraints.' />
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="flex flex-col md:flex-row min-h-[20rem] gap-4 my-4">
-               <div class="flex-none flex-col gap-2 w-full md:w-[450px] bg-gradient-to-bl bg-[#F3F3F3] rounded-3xl overflow-hidden">
-                 <CvCard title='3) dreamed projects' body="Design intuitive interfaces and products that reinvent codes in a sustainable way, shaping tomorrow's world. Create accessible, practical, and influential design projects." />
-                 <img  src="/public/images/dream.gif" width={725} class="mix-blend-color-burn px-10 pb-10" alt="La description de mon image." />
-               </div>
-               <div class="flex-grow flex-col gap-2 bg-gradient-to-tl bg-[#F3F3F3] rounded-3xl overflow-hidden">
-                 <CvCard title='4) how do i make' body="My work process consists of two to three phases: defining the project context and issues, creating and refining the product and its features, and developing the web project, including quality assurance and AB testing." />
-                 <img  src="/public/images/agility-dark.gif" width={575} class="mix-blend-color-burn p-10" alt="La description de mon image." />
-               </div>
-             </div>
-             <div class="flex flex-col md:flex-row gap-4">
-               <div class="flex-none bg-gradient-to-bl bg-[#F3F3F3] rounded-3xl overflow-hidden">
-                   <img  src="/public/images/chair.gif" width={450} class="mix-blend-color-burn" alt="La description de mon image." />
-               </div>
-               <div class="flex-grow bg-gradient-to-tr bg-[#F3F3F3] rounded-3xl overflow-hidden">
-                 <CvCard title='5) why i do it' body="I am driven by a passion for digital and graphic design, and I strive to create meaningful and impactful work that makes a difference in people's lives. I aim to create practical and predictive interfaces that simplify daily life and enhance user experience. Pushing creative boundaries, exploring new design trends, collaborating with innovative teams, and continuously learning and growing as a designer in the ever-evolving digital landscape are all important factors that fuel my passion for design." />
-               </div>
-           </div>
-           <div class="flex flex-col min-h-52 my-4 bg-transparent py-20 overflow-hidden rounded-3xl ">
-               <h3 class="flex text-lg font-tekst uppercase p-6 md:p-8">They trust me</h3>
-               <div class="grid grid-flow-row grid-cols-1 lg:grid-cols-4 px-6 md:px-8 pb-7 md:pb-14">
-                   {clients.map((client) => (
-                     <p class="font-sans font-semibold text-base">{client}</p>
-                   ))}
-               </div>
-           </div>
-          
-             <StickyScroll content={roadmap.reverse()} client:only="react" />
-           <div class=" flex flex-row justify-start underline py-8">
-               <span class="p-6 md:p-8">
-                 <a class="font-sans text-base uppercase" href="mailto:stadlerstephane@gmail.com">email me</a>
-               </span>
-               <span class="p-6 md:p-8">
-                 <a class="font-sans text-base uppercase" href="tel:0032492251129">Call me</a>
-               </span>
-             </div>
-       </div>
+                  <span class="font-serif text-lg  font-normal pb-2">When it comes to web design,</span>
+                  <p class="font-sans text-sm text-pretty">
+                    I focus on creating user-friendly interfaces
+                    that integrate brand values seamlessly. By blending design and technology,
+                    I deliver digital solutions that meet users&apos; needs and stand out
+                    in today&apos;s competitive landscape.
+                  </p>
+                </div>
+
+                <div class="flex flex-col">
+                  <span class="font-serif text-lg  font-normal pb-2">By anticipating technological constraints in my designs, </span>
+                  <p class="font-sans text-sm text-pretty">
+                    I make it easier for developers to bring my work to life. I stay up-to-date with
+                    the latest technologies and provide strategic guidance tailored to
+                    each project&apos;s unique needs, ensuring efficient and accurate development
+                    with exceptional results for both design and development teams.
+                  </p>
+                </div>
+              
+              </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-        </main>
-      </Layout>
+    <!-- end INTRO -->
+
+    <!-- start of boxes-container -->
+    <div
+      class="boxes-container h-full relative w-full overflow-hidden flex flex-col items-center justify-center mx-auto  my-4"
+    >
+      <Boxes client:load />
+
+     
+
+
+    <!-- Start of big section skill, tool, point, client... -->
+    <div class="w-full mx-auto my-4 max-w-4xl">
+       <!-- Start section skill and tool -->
+      <div class="flex flex-col md:flex-row mb-4 bg-transparent rounded-3xl w-full">
+        <div class="flex flex-col basis-1/2">
+          <h2 class="font-serif text-lg capitalize p-6 md:p-8">
+            skills <br />and tools
+          </h2>
+          <img
+            src="/public/images/forward.gif"
+            width={400}
+            class=""
+            alt="La description de mon image."
+          />
+        </div>
+
+        <!-- Start skill and tool -->
+        <div class="grid grid-flow-col justify-stretch basis-1/2 py-6 md:py-8">
+          <div class="flex flex-col">
+            {
+              skills.map((skill) => (
+                <p class="text-base font-sans font-semibold text-balance max-w-md">
+                  {skill}
+                </p>
+              ))
+            }
+          </div>
+          <div class="flex flex-col">
+            {
+              tools.map((tool, index) => (
+                <p class="text-base font-sans font-semibold text-balance max-w-md">
+                  {tool}
+                </p>
+              ))
+            }
+          </div>
+        </div>
+        <!-- End skill and tool -->
+      </div>
+      <!-- End section SKill and tool -->
+      <div class="flex flex-col">
+        <div class="flex flex-col md:flex-row gap-4 ">
+          <div
+            class="border border-[#F3F3F3] shadow  flex-none bg-gradient-to-bl bg-white rounded-3xl overflow-hidden"
+          >
+            <h2 class="font-serif text-lg capitalize p-8">five points</h2>
+            <img
+              src="/public/images/process-dark.gif"
+              width={375}
+              class=""
+              alt="La description de mon image."
+            />
+          </div>
+          <div class="flex flex-grow">
+            <div class="flex flex-col flex-grow gap-4 justify-between">
+              <div
+                class="border border-[#F3F3F3] shadow bg-gradient-to-tl bg-white rounded-3xl basis-1/2"
+              >
+                <CvCard
+                  title="1) what i do"
+                  body="I implement strategies at various scales, including consultancy, conceptualization, product design, and development, to create brand identities and design digital products."
+                />
+              </div>
+              <div
+                class="border border-[#F3F3F3] shadow bg-gradient-to-br bg-white rounded-3xl basis-1/2"
+              >
+                <CvCard
+                  title="2) The best i do"
+                  body="Develop ideas through open-minded listening, research, and analysis. Create designs that anticipate and address developer constraints."
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row min-h-[20rem] gap-4 my-4">
+          <div
+            class="border border-[#F3F3F3] shadow flex-none flex-col gap-2 w-full md:w-[450px] bg-gradient-to-bl bg-white rounded-3xl overflow-hidden"
+          >
+            <CvCard
+              title="3) dreamed projects"
+              body="Design intuitive interfaces and products that reinvent codes in a sustainable way, shaping tomorrow's world. Create accessible, practical, and influential design projects."
+            />
+            <img
+              src="/public/images/dream.gif"
+              width={725}
+              class=" px-10 pb-10"
+              alt="La description de mon image."
+            />
+          </div>
+          <div
+            class="border border-[#F3F3F3] shadow flex-grow flex-col gap-2 bg-gradient-to-tl bg-white rounded-3xl overflow-hidden"
+          >
+            <CvCard
+              title="4) how do i make"
+              body="My work process consists of two to three phases: defining the project context and issues, creating and refining the product and its features, and developing the web project, including quality assurance and AB testing."
+            />
+            <img
+              src="/public/images/agility-dark.gif"
+              width={575}
+              class=" p-10"
+              alt="La description de mon image."
+            />
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row gap-4">
+          <div
+            class="border border-[#F3F3F3] shadow  flex-none bg-gradient-to-bl bg-white rounded-3xl overflow-hidden"
+          >
+            <img
+              src="/public/images/chair.gif"
+              width={450}
+              class=""
+              alt="La description de mon image."
+            />
+          </div>
+          <div
+            class="border border-[#F3F3F3] shadow flex-grow bg-gradient-to-tr bg-white rounded-3xl overflow-hidden"
+          >
+            <CvCard
+              title="5) why i do it"
+              body="I am driven by a passion for digital and graphic design, and I strive to create meaningful and impactful work that makes a difference in people's lives. I aim to create practical and predictive interfaces that simplify daily life and enhance user experience. Pushing creative boundaries, exploring new design trends, collaborating with innovative teams, and continuously learning and growing as a designer in the ever-evolving digital landscape are all important factors that fuel my passion for design."
+            />
+          </div>
+        </div>
+        <div
+          class="flex flex-col min-h-52 my-4 bg-transparent py-20 overflow-hidden rounded-3xl"
+        >
+          <h3 class="flex text-lg font-serif uppercase p-6 md:p-8">
+            They trust me
+          </h3>
+          <div
+            class="grid grid-flow-row grid-cols-1 lg:grid-cols-4 px-6 md:px-8 pb-7 md:pb-14"
+          >
+            {
+              clients.map((client) => (
+                <p class="font-sans font-semibold text-base">{client}</p>
+              ))
+            }
+          </div>
+        </div>
+
+        <StickyScroll content={roadmap.reverse()} client:only="react" />
+      </div>
+
+       <!-- footer social network -->
+    { indexElements && indexElements.length > 0 && (
+      <div class="w-full h-full flex flex-col gap-10 justify-start items-center p-4 sm:p-0 mt-16">
+        {indexElements.map((index) => ( 
+            <div class="flex flex-col w-full justify-end gap-2">
+              <div class="w-full">
+                <h2 class="text-left font-serif text-lg font-normal text-black max-w-lg text-balance">
+                  {index.title}
+                </h2>
+              </div>
+              <div class=" pt-4">
+                <p>Follow</p>
+                <div class="flex flex-col gap-8">
+                  <div class="flex flex-row gap-2">
+                    <a href={index.linkedInUrl}><LinkedIn /></a>
+                    <a href={index.instagramUrl}><Instagram /></a>
+                    <a href={index.threadUrl}><Thread /></a>
+                  </div>
+                  <div class="flex flex-row gap-8">
+                    <a class="underline uppercase" href="tel:0032492251129">Call me</a>
+                    <a class="underline uppercase"
+                        href="mailto:stadlerstephane@gmail.com">email me</a>
+                   
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          ))}	
+        </div>
+      )}
+
+    
+    </div>
+    <!-- end boxes-container -->
+    
+   
+
+  </div>
+    <!-- End of big section skill, tool, point, client... -->
+
+    
+  </main>
+</Layout>
