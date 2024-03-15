@@ -42,13 +42,36 @@ try {
 
         <!-- center-col -->
         <div class="md:flex-[3] relative">
-            <div class="md:max-w-lg flex flex-col mx-auto items-center">
-                {project.image && <img
-                    class="card w-full h-full object-cover rounded-none items-center with-transition "
-                    data-transition-name="project-card"
-                    src={project.image.url}
-                    alt="A description of my image."
-                />}
+            <div class="card md:max-w-lg flex flex-col mx-auto items-center">
+                {project.image &&                                
+                    project.featuredType === "Image" && (
+                        <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
+                            <img
+                                class="card-media w-full h-full" 
+                                data-persist="true"
+                                src={project.image.url}
+                                alt={project.image.fileName}
+                            />
+                        </a>
+                    )                                                                    
+                }
+                {project.image && 
+                    project.featuredType === "Video" && (
+                        <div class="video-container" data-persist-container="true">
+                            <a  href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id} >
+                                <video
+                                    loop
+                                    muted
+                                    autoplay
+                                    class="card-media w-full h-full"
+                                    data-persist="true"
+                                    >
+                                    <source src={project.image.url} type="video/mp4" />
+                                </video>
+                            </a>
+                        </div>
+                    )
+                }
             </div>
 
             <a href="/projects" class="fixed top-1 left-1 z-[999] inline-flex h-12 w-auto p-4 bg-slate-200 items-center text-black">&larr; Back</a>

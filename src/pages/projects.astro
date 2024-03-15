@@ -1,10 +1,8 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { useCallback, useMemo } from "react";
 import type Project from "@interfaces/project";
 import {simpleSchema as projectSchema} from "@interfaces/project";
-import HygraphVideo from "@components/HygraphVideoComponent";
-import HygraphImage from "@components/HygraphImageComponent";
+
 
 
 const query = {
@@ -27,24 +25,44 @@ const projects: Project[] = json.data.projects;
 ---
 
 <Layout title="My main page">
-    <div class="project-list  w-full flex flex-row justify-center  gap-4 border-4 border-violet-500">
+    <div class="project-list  w-full flex flex-col justify-center  gap-4 border-4 border-violet-500">
         <!-- <div class="flex-1"></div> -->
         <div class="relative w-full contents ">
             <div class="w-full relative ">
                 {projects && projects.length > 0 && (
                     <div class="w-full my-[50px] flex flex-col items-center">
                         {projects.map((project) => (
-                            <div class="relative z-50 p-4 sm:p-0 mb-4 flex flex-col justify-center items-center max-w-md">
-                                {project.image && (
-                                    <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
-                                        <img
-                                            class="card card-projects w-full h-full object-cover hover:rounded-3xl mb-[20px] shadow-xl hover:shadow-lg"
-                                            data-transition-name="project-card"
-                                            src={project.image.url}
-                                            alt="A description of my image."
-                                        />
-                                    </a>
-                                )}
+                            <div class="card border-4 z-50 overflow-clip hover:rounded-3xl shadow-xl hover:shadow-lg flex flex-col justify-center items-center max-w-md">
+                                {project.image &&                                
+                                    project.featuredType === "Image" && (
+                                        <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
+                                            <img
+                                                class="card-media w-full h-full"
+                                                data-persist="true"
+                                                src={project.image.url}
+                                                alt={project.image.fileName}
+                                            />
+                                        </a>
+                                    )                                                                    
+                                }
+                                {project.image && 
+                                    project.featuredType === "Video" && (
+                                        <div class="video-container" data-persist-container="true">
+                                            <a  href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id} >
+                                                <video
+                                                    loop
+                                                    muted
+                                                    autoplay
+                                                    class="card-media w-full h-full"
+                                                    data-persist="true"
+                                                    >
+                                                    <source src={project.image.url} type="video/mp4" />
+                                                </video>
+                                            </a>
+                                        </div>
+                                    )
+                                }
+
 
                                 <a href={`/projects/${project.slug}/`}>
                                     <div class="font-sans text-lg max-w-lg md:w-[32rem] text-balance pt-20 pb-10 hidden" data-transition-name="project-description">
@@ -67,14 +85,14 @@ const projects: Project[] = json.data.projects;
 </Layout>
 
 
-<style is:inline>
+<style is:global>
 
-    .card-projects {
-    transition: all ease-in-out 0.15s;
+    .card {
+    transition: all ease-in-out .25s;
     position: relative;
   }
 
-  .card-projects:hover {
+    .card:hover {
     transform: scale(0.97);
   }
 

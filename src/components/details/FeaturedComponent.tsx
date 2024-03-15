@@ -46,7 +46,7 @@ export default function FeaturedComponent({ project }: FeaturedProps) {
                 )}
                 width={project.image.width}
                 height={project.image.height}
-                data-transition-name="project-card"
+                // data-transition-name="project-card"
                 src={project.image.url}
                 mimeType={project.image.mimeType}
 

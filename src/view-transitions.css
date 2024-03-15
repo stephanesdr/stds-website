@@ -10,8 +10,13 @@
   animation: none;
 } 
 
-.with-transition[data-transition-name="project-card"] {
+
+/* .with-transition[data-transition-name="project-card"] {
   view-transition-name: project-card;
+} */
+
+.with-transition[data-transition-name="card-media"] {
+  view-transition-name: card-media;
 }
 
 .with-transition[data-transition-name="project-description"] {
@@ -25,3 +30,5 @@
 .with-transition[data-transition-name="main-nav-links"] {
   view-transition-name: main-nav-links;
 }
+
+
