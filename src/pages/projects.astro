@@ -32,7 +32,7 @@ const projects: Project[] = json.data.projects;
                 {projects && projects.length > 0 && (
                     <div class="w-full my-[50px] flex flex-col items-center">
                         {projects.map((project) => (
-                            <div class="card border-4 z-50 overflow-clip hover:rounded-3xl shadow-xl hover:shadow-lg flex flex-col justify-center items-center max-w-md">
+                            <div class="card mx-4 my-[0.5rem] z-50 overflow-clip hover:rounded-3xl shadow-lg hover:shadow-sm flex flex-col justify-center items-center max-w-md">
                                 {project.image &&                                
                                     project.featuredType === "Image" && (
                                         <div class="image-container" data-persist-container="true">
@@ -69,7 +69,7 @@ const projects: Project[] = json.data.projects;
 
 
                                 <a href={`/projects/${project.slug}/`}>
-                                    <div class="font-sans text-lg max-w-lg md:w-[32rem] text-balance pt-20 pb-10 hidden" data-transition-name="project-description">
+                                    <div class="font-sans text-lg  text-balance pt-20 pb-10 hidden" data-transition-name="project-description">
                                         {project.name},
                                         <br>
                                         <p class="text-balance">
