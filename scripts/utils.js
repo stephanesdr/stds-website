@@ -14,7 +14,7 @@ export function updateTheDOMSomehow(data) {
 export function findBlockDescriptionByPath(path, parent = document) {
     return parent.querySelector(`[href="${path}"] > [data-transition-name="project-description"]`)
 }
-export function findBlockDescriptionByPath(path, parent = document) {
+export function findBlockCardMediaByPath(path, parent = document) {
     return parent.querySelector(`[href="${path}"] > [data-transition-name="card-media"]`)
 }
 
