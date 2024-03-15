@@ -38,6 +38,7 @@ const projects: Project[] = json.data.projects;
                                         <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
                                             <img
                                                 class="card-media w-full h-full"
+                                                data-transition-name="card-media"
                                                 data-persist="true"
                                                 src={project.image.url}
                                                 alt={project.image.fileName}
@@ -54,6 +55,7 @@ const projects: Project[] = json.data.projects;
                                                     muted
                                                     autoplay
                                                     class="card-media w-full h-full"
+                                                    data-transition-name="card-media"
                                                     data-persist="true"
                                                     >
                                                     <source src={project.image.url} type="video/mp4" />
