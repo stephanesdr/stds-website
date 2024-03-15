@@ -25,7 +25,7 @@ const projects: Project[] = json.data.projects;
 ---
 
 <Layout title="My main page">
-    <div class="project-list  w-full flex flex-col justify-center  gap-4 border-4 border-violet-500">
+    <div class="project-list  w-full flex flex-col justify-center  gap-4">
         <!-- <div class="flex-1"></div> -->
         <div class="relative w-full contents ">
             <div class="w-full relative ">
@@ -35,15 +35,17 @@ const projects: Project[] = json.data.projects;
                             <div class="card border-4 z-50 overflow-clip hover:rounded-3xl shadow-xl hover:shadow-lg flex flex-col justify-center items-center max-w-md">
                                 {project.image &&                                
                                     project.featuredType === "Image" && (
-                                        <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
-                                            <img
-                                                class="card-media w-full h-full"
-                                                data-transition-name="card-media"
-                                                data-persist="true"
-                                                src={project.image.url}
-                                                alt={project.image.fileName}
-                                            />
-                                        </a>
+                                        <div class="image-container" data-persist-container="true">
+                                            <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
+                                                <img
+                                                    class="card-media w-full h-full"
+                                                    data-transition-name="card-media"
+                                                    data-persist="true"
+                                                    src={project.image.url}
+                                                    alt={project.image.fileName}
+                                                />
+                                            </a>
+                                        </div>
                                     )                                                                    
                                 }
                                 {project.image && 
@@ -55,7 +57,7 @@ const projects: Project[] = json.data.projects;
                                                     muted
                                                     autoplay
                                                     class="card-media w-full h-full"
-                                                    data-transition-name="card-media"
+                                                    // data-transition-name="card-media"
                                                     data-persist="true"
                                                     >
                                                     <source src={project.image.url} type="video/mp4" />

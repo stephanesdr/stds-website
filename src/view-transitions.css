@@ -1,14 +1,15 @@
-:root {
+/* :root {
   view-transition-name: none
-}
+} */
 
-::view-transition-old(root) {
-  animation: none;
-}
-
+::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
-} 
+}
+
+/* ::view-transition-new(root) {
+  animation: none;
+}  */
 
 
 /* .with-transition[data-transition-name="project-card"] {
