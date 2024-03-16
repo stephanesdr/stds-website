@@ -4,7 +4,7 @@ import  {schema as assetSchema} from "./asset";
 
 
 export default interface Curriculum {
-    images?: Asset;
+    imagesCv?: Asset;
 }
 
 export function simpleSchema() {

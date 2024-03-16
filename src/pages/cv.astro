@@ -12,8 +12,7 @@ import LinkedIn from "@components/utilities/linkedinIcon.astro"
 import Instagram from "@components/utilities/instagramIcon.astro"
 import Thread from "@components/utilities/threadIcon.astro"
 import type Index from "@interfaces/index";
-import type Curriculum from "@interfaces/curriculum";
-import {simpleSchema as curriculumSchema} from "@interfaces/curriculum";
+
 import {simpleSchema as indexSchema} from "@interfaces/index";
 
 const query = {
@@ -25,10 +24,6 @@ const query = {
 		    indices {
 		${indexSchema()}
         }
-        curricula {
-         ${curriculumSchema()}
-  }
-
 
         
       }`,
@@ -38,10 +33,7 @@ const query = {
 const response = await fetch(import.meta.env.ASTRO_APP_HYGRAPH_ENDPOINT, query);
 const json = await response.json();
 const indexElements: Index[] = json.data.indices;
-const curriculamElements: Curriculum[] = json.data.curricula;
 
-
-console.log(curriculamElements[0]);
 
 ---
 
@@ -62,6 +54,7 @@ console.log(curriculamElements[0]);
             <h1
               class=" text-left font-serif text-[27px] font-normal md:px-8 md:pt-10 text-black max-w-lg text-pretty"
             >
+            
               As an interactive designer, 
               <br>I specialize in three key areas: 
               <!-- Branding, design, and addressing technological constraints.             -->
@@ -124,7 +117,7 @@ console.log(curriculamElements[0]);
             skills <br />and tools
           </h2>
           <img
-            src="/forward.gif"
+            src="/process-dark.gif"
             width={400}
             class=""
             alt="La description de mon image."
