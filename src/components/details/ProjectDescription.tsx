@@ -12,6 +12,9 @@ export default function ColumnComponent({ project }: any) {
     }, []);
 
     return <div ref={eRef} className="boxed hidden" data-name="project-description">
-        <p className="w-full  max-w-5xl text-pretty px-5 pb-44 pt-10 text-lg font-serif">{project.description}</p>
+        <p className="w-full max-w-4xl text-pretty text-lg font-serif">{project.description}</p>
+        <ul>
+          
+        </ul>
     </div>
 }

@@ -107,6 +107,28 @@ try {
         )
     }
 
-    <ProjectDescription project={project} client:only="react">
+
+ 
+
+    <section class="flex flex-row w-full max-w-7xl justify-between  pb-44 pt-10 px-5">
+        <div>
+            <ProjectDescription project={project} client:only="react">
+        </div>
+        <div class="flex flex-col">
+            <span class="flex flex-row space-x-1">
+                <p class="font-serif">client :</p> 
+                <h3 class="uppercase">{project.client}</h3>
+            </span>
+            
+                {project.tags &&  (
+                    <ul class="flex flex-col font-sans text-sm space-y-1">
+                        {project.tags.map((tag) => (
+                            <li>{tag.projectTag.name}</li>
+                        ))}
+                    </ul>
+                )}
+        </div>
+    </section>
+        
 
 </Layout>
