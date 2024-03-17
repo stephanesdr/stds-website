@@ -121,8 +121,8 @@ try {
             </div>
             
                 <div class="flex flex-row space-x-1 mb-2 items-baseline ">
+                    {project.tags && project.tags.length > 1 && (
                     <p class="font-serif text-xs uppercase min-w-24">services</p> 
-                    {project.tags &&  (
                         <ul class="flex flex-col font-sans text-sm space-y-1">
                             {project.tags.map((tag) => (
                                 <li>{tag.projectTag.name}</li>
