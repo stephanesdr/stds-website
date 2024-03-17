@@ -33,7 +33,7 @@ const indexElements: Index[] = json.data.indices;
     <main class="w-full h-full boxed">
 
         <div
-        class="boxes-container h-full relative w-full overflow-hidden flex flex-col items-center justify-center mx-auto  my-4"
+        class="boxes-container h-full relative w-full overflow-hidden flex flex-col items-center justify-center mx-auto my-4"
       >
         <Boxes client:only="react"  />
 
@@ -41,7 +41,7 @@ const indexElements: Index[] = json.data.indices;
                 loop
                 muted
                 autoplay
-                class="card-media w-1/2 h-full absolute end-24 mix-blend-multiply -z-30"
+                class="card-media w-1/2 h-full absolute end-24 mix-blend-multiply pointer-events-none"
                 data-transition-name="card-media"
                 data-persist="true"
                 >
@@ -55,7 +55,7 @@ const indexElements: Index[] = json.data.indices;
           {indexElements.map((index) => ( 
               <div class="flex flex-col w-full justify-end gap-2">
                 <div class="w-full">
-                  <h2 class="text-left font-serif text-lg font-normal text-black max-w-lg text-balance">
+                  <h2 class="text-left font-serif text-lg font-normal dark:text-stone-300 max-w-lg text-balance">
                     Hi, feel free to join me. <br>I'm always open to hear about your projects.
                   </h2>
                 </div>

@@ -36,7 +36,7 @@ try {
 ---
 
 <Layout title="My main page">
-    <div class="project-list boxed w-full flex flex-row justify-start gap-4">
+    <div class="project-list boxed w-full flex flex-row justify-start gap-4 dark:bg-stone-800 dark:text-stone-300">
         <!-- left-col -->
         <div class="md:flex-1"></div>
 
@@ -78,7 +78,7 @@ try {
                 }
             </div>
 
-            <a href="/projects" class="fixed top-1 left-1 z-[999] inline-flex h-12 w-auto p-4 bg-slate-200 items-center text-black">&larr; Back</a>
+            <a href="/projects" class="fixed top-5 left-5 z-[999] inline-flex h-12 w-12 p-4 bg-stone-200 dark:bg-stone-900 rounded-full items-center hover:scale-95 transition-all duration-200 text-lg mix-blend-difference">&larr;</a>
 
             <div class="flex flex-col ">
                 <div class="font-sans text-lg max-w-xl text-balance pt-20 pb-10" data-transition-name="project-description">
@@ -110,7 +110,7 @@ try {
 
  
 
-    <section class="flex flex-col sm:flex-row w-full max-w-full justify-start sm:gap-8  pb-44 pt-10 px-5 space-y-10 sm:space-y-0 ">
+    <section class="flex flex-col sm:flex-row w-full max-w-full justify-start sm:gap-8  pb-44 pt-10 px-5 space-y-10 sm:space-y-0 dark:bg-stone-800 dark:text-stone-300z">
         <div>
             <ProjectDescription project={project} client:only="react">
         </div>

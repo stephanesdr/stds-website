@@ -12,7 +12,7 @@ export default function FooterComponent({ children } : {
 }) {
     const $debug = useStore($isDebug)
 
-    return <footer className="footer">
+    return <footer className="footer dark:bg-stone-800 dark:text-stone-300">
         <nav className={cn(
                 'boxed',
                 //$debug ? 'border border-red-200' : '',

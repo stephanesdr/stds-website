@@ -45,7 +45,7 @@ export const  StickyScroll = ({
   return (
     <div className="flex flex-col w-full">
            
-                {/* <h2 className="text-left font-sans text-base font-semibold p-8 text-black max-w-lg text-balance">3 university diplomas with honors in higher education and 2 professional training courses. +5 years of active experience in agency</h2> */}
+                {/* <h2 className="text-left font-sans text-base font-semibold p-8  max-w-lg text-balance">3 university diplomas with honors in higher education and 2 professional training courses. +5 years of active experience in agency</h2> */}
          
 
         <motion.div
@@ -56,7 +56,7 @@ export const  StickyScroll = ({
             ease: "linear",
             duration: .8
            }}
-         className="w-full h-[27rem] md:h-[24rem] border border-[#F3F3F3] shadow   bg-gradient-to-bl bg-white  overflow-y-auto flex flex-row-reverse justify-end relative rounded-3xl overflow-hidden p-6 md:p-8 scrollbar-thin scrollbar-thumb-black scrollbar-track-orange-400  mb-4"
+         className="w-full h-[27rem] md:h-[24rem] border border-[#F3F3F3] shadow  bg-gradient-to-bl bg-white dark:border-stone-700 dark:bg-stone-700 dark:bg-gradient-to-tr dark:from-0% dark:from-stone-800  overflow-y-auto flex flex-row-reverse justify-end relative rounded-3xl overflow-hidden p-6 md:p-8 scrollbar-thin scrollbar-thumb-black scrollbar-track-orange-400  mb-4"
           ref={ref}
         >
         
@@ -72,12 +72,12 @@ export const  StickyScroll = ({
                     animate={{
                       opacity: activeCard === index ? 1 : .2,
                     }}
-                    className="text-black font-sans uppercase text-base font-semibold"
+                    className=" font-sans uppercase text-base font-semibold"
                   >
                     {item.school}
                   </motion.h2>
                   <motion.div
-                    className="max-w-sm flex flex-col gap-1 text-black font-semibold space-y-4"
+                    className="max-w-sm flex flex-col gap-1  font-semibold space-y-4"
                     initial={{
                     opacity: 0,
                       }}
@@ -86,7 +86,7 @@ export const  StickyScroll = ({
                      }}
                   >
                       <p className="font-serif text-sm">{item.city}</p>
-                        <span className="text-black font-serif uppercase text-sm md:hidden">
+                        <span className=" font-serif uppercase text-sm md:hidden">
                           {item.yearStart} {item.yearEnd}
                         </span>
                       <p className="font-sans text-base">{item.certificate} <br />{item.note} </p>
@@ -100,7 +100,7 @@ export const  StickyScroll = ({
             // animate={{
             //   background: linearGradients[activeCard % linearGradients.length],
             // }}
-            className="hidden lg:block h-60 w-56 rounded-md bg-transparent sticky top-0 overflow-hidden"
+            className="hidden lg:block h-60 w-56 rounded-md bg-transparent  sticky top-0 overflow-hidden"
           >
           <div className="relative flex items-start px-4">
             <div className="w-full">
@@ -113,7 +113,7 @@ export const  StickyScroll = ({
                     animate={{
                       opacity: activeCard === index ? 1 : 0,
                     }}
-                    className="text-black font-serif uppercase text-lg"
+                    className=" font-serif uppercase text-lg"
                   >
                     {item.yearStart} <br />
                     {item.yearEnd}

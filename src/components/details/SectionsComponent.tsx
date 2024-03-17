@@ -37,7 +37,7 @@ export default function Sections({ project }: SectionsProps) {
       }, [project.sections])
     
     return  <>
-        <motion.div className={cn("project__sections", "overflow-hidden")}
+        <motion.div className={cn("project__sections", "overflow-hidden", "dark:bg-stone-800 dark:text-stone-300")}
             initial={"closed"}
             animate={show ? "open" : "closed"}
             variants={variants}>

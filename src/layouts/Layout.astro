@@ -45,7 +45,7 @@ const type = ((page) => {
 		
 	</head>
 	<body>
-        <div id="wrapper" class="wrapper min-h-screen h-screen flex flex-col">
+        <div id="wrapper" class="wrapper min-h-screen h-screen flex flex-col dark:bg-stone-800 dark:text-stone-300 dark:bg-blend-multiply">
 			<header class="header w-full relative z-30"
 				class:list={[
 					{'header--type-projects': type == HeaderType.Projects},
@@ -91,12 +91,12 @@ const type = ((page) => {
             </main>
 
             <FooterComponent client:only="react">
-				<p class="text-xs ">©2024 Stéphane Stadler</p class="text-sm">
+				<p class="text-sm font-normal">©2024 Stéphane Stadler </p>
 			</FooterComponent>
 
         </div>
 		
-		<DebugButton client:only="react">
+		<!-- <DebugButton client:only="react"> -->
 
 	</body>
 </html>

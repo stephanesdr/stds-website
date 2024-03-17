@@ -41,16 +41,16 @@ console.log(indexElements[0].image?.url)
 		<main class="w-full h-full container boxed">
 
 			{ indexElements && indexElements.length > 0 && (
-				<div class="w-full h-full flex flex-col gap-10 justify-start items-center p-4 sm:p-0">
+				<div class="w-full h-full flex flex-col gap-10 justify-start items-center p-4 sm:p-0 ">
 					{indexElements.map((index) => ( 
 			
-							<div class="flex flex-1 flex-col w-full md:w-4/5 lg:w-3/5 justify-center">
+							<div class="flex flex-1 flex-col w-full md:w-4/5 lg:w-3/5 justify-center ">
 								{index.image && (
 									
-										<a href="/projects" class=" h-full md:h-3/5 lg:h-4/6 ">
+										<a href="/projects" class=" h-full md:h-3/5 lg:h-4/6 overflow-hidden rounded-3xl">
 											<HygraphVideo
 												className={cn(
-												"w-full h-full object-cover object-center overflow-hidden rounded-3xl")}
+												"w-full h-full object-cover bg-clip-content scale-110 object-center ")}
 												src={index.image.url}
 												width={index.image.width}
 												height={index.image.height}
@@ -61,9 +61,9 @@ console.log(indexElements[0].image?.url)
 								
 								)}
 							</div>
-							<div class="flex flex-col w-full justify-end gap-2">
+							<div class="flex flex-col w-full justify-end gap-2 ">
 								<div class="w-full">
-									<h2 class="text-left font-serif text-lg font-normal text-black max-w-lg text-balance">
+									<h2 class="text-left font-serif text-lg font-normal dark:text-stone-300 max-w-lg text-balance">
 										{index.title}
 									</h2>
 								</div>
