@@ -41,7 +41,7 @@ const indexElements: Index[] = json.data.indices;
                 loop
                 muted
                 autoplay
-                class="card-media w-1/2 h-full absolute end-24 mix-blend-multiply pointer-events-none"
+                class="card-media w-full sm:w-1/2 h-full absolute end-0 sm:end-24 mix-blend-multiply pointer-events-none"
                 data-transition-name="card-media"
                 data-persist="true"
                 >
@@ -50,7 +50,7 @@ const indexElements: Index[] = json.data.indices;
 
              <!-- footer social network -->
     { indexElements && indexElements.length > 0 && (
-        <div class="w-full h-full flex flex-col gap-10 justify-start items-center p-36 mt-16">    
+        <div class="w-full h-full flex flex-col gap-10 justify-start items-center p-4 sm:p-36 mt-16">    
 
           {indexElements.map((index) => ( 
               <div class="flex flex-col w-full justify-end gap-2">
