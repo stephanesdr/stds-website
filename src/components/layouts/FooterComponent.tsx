@@ -14,9 +14,9 @@ export default function FooterComponent({ children } : {
 
     return <footer className="footer">
         <nav className={cn(
-                // 'boxed',
+                'boxed',
                 //$debug ? 'border border-red-200' : '',
-                'flex flex-col md:flex-row items-center flex-wrap justify-between gap-4 p-4'
+                'flex flex-col md:flex-row items-center flex-wrap justify-between gap-4 py-4'
             )}>
             {children}
            
