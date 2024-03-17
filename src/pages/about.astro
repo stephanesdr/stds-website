@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro'
+import {Boxes} from '../components/ui/background-boxes'
+import LinkedIn from "../components/utilities/linkedinIcon.astro"
+import Instagram from "../components/utilities/instagramIcon.astro"
+import Thread from "../components/utilities/threadIcon.astro"
+import type Index from "../interfaces/index";
+
+import {simpleSchema as indexSchema} from "../interfaces/index";
+
+const query = {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+      {
+		    indices {
+		${indexSchema()}
+        }
+
+        
+      }`,
+  }),
+};
+
+const response = await fetch(import.meta.env.ASTRO_APP_HYGRAPH_ENDPOINT, query);
+const json = await response.json();
+const indexElements: Index[] = json.data.indices;
+---
+
+
+<Layout title='About Stephane Stadler - all you need to know to contact me'>
+    <main class="w-full h-full boxed">
+
+        <div
+        class="boxes-container h-full relative w-full overflow-hidden flex flex-col items-center justify-center mx-auto  my-4"
+      >
+        <Boxes client:only="react"  />
+
+          <video
+                loop
+                muted
+                autoplay
+                class="card-media w-1/2 h-full absolute end-24 mix-blend-multiply -z-30"
+                data-transition-name="card-media"
+                data-persist="true"
+                >
+                <source src="/contact.mp4" type="video/mp4" />
+            </video>
+
+             <!-- footer social network -->
+    { indexElements && indexElements.length > 0 && (
+        <div class="w-full h-full flex flex-col gap-10 justify-start items-center p-36 mt-16">    
+
+          {indexElements.map((index) => ( 
+              <div class="flex flex-col w-full justify-end gap-2">
+                <div class="w-full">
+                  <h2 class="text-left font-serif text-lg font-normal text-black max-w-lg text-balance">
+                    Hi, feel free to join me. <br>I'm always open to hear about your projects.
+                  </h2>
+                </div>
+                <div class="flex flex-row gap-8 mt-8 z-[999] cursor-pointer">
+                      <a class="underline uppercase" href="tel:0032492251129">Call me</a>
+                      <a class="underline uppercase"
+                          href="mailto:stadlerstephane@gmail.com">email me</a>
+                     
+                    </div>
+                <div class=" pt-4">
+                  <p>Follow</p>
+                  <div class="flex flex-col gap-8">
+                    <div class="flex flex-row gap-2">
+                      <a href={index.linkedInUrl}><LinkedIn /></a>
+                      <a href={index.instagramUrl}><Instagram /></a>
+                      <a href={index.threadUrl}><Thread /></a>
+                    </div>   
+                  </div>
+                </div>
+              </div>
+            ))}	
+          </div>
+        )}
+        </div>
+    </main>
+</Layout>

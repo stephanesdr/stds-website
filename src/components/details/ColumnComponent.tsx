@@ -90,7 +90,7 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
         style={columnStyle}>
 
         {column.image && <>
-            {column.columnType === ColumnType.Image && <div className={cn("project__image-wrapper", "w-full overflow-hidden")}>
+            {column.columnType === ColumnType.Image && <div className={cn("project__image-wrapper", "w-full overflow-hidden rounded-3xl")}>
 
                 {isImage(column.image) && <HygraphImage
                     className={cn(

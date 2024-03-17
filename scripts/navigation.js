@@ -5,6 +5,7 @@ import {
     findBlockDescriptionByPath,
     getPersistentElement,
     getPersistentElementContainer,
+    findBlockCardMediaByPath,
 } from './utils'
 
 let prevPageScroll = 0
@@ -45,13 +46,19 @@ function handleProjectTransition(navigateEvent, toPath, fromPath) {
             document
                 .querySelectorAll('[data-transition-name="project-description"]')
                 .forEach((card) => card.classList.remove('with-transition'))
+            
+            document
+                .querySelectorAll('[data-transition-name="card-media"]')
+                .forEach((card) => card.classList.remove('with-transition'))
 
-            const card = findCardByPath(toPath)
+            const card = findCardByPath(toPath);
+            const cardMedia = findBlockCardMediaByPath(toPath);
             const description = findBlockDescriptionByPath(toPath); 
             let persistentEl
 
-            if (card && description) {
+            if (card && cardMedia && description) {
                 card.classList.add('with-transition')
+                cardMedia.classList.add('with-transition')
                 description.classList.add('with-transition')
                 persistentEl = getPersistentElement(card)
             }
@@ -89,10 +96,12 @@ function handleHomeTransition(navigateEvent, toPath, fromPath) {
                 updateTheDOMSomehow(data)
 
                 const card = findCardByPath(fromPath)
+                const cardMedia = findBlockCardMediaByPath(fromPath)
                 const description = findBlockDescriptionByPath(fromPath)
 
-                if (card && description) {
+                if (card && cardMedia && description) {
                     card.classList.add('with-transition')
+                    cardMedia.classList.add('with-transition')
                     description.classList.add('with-transition')
 
                     const persistentElContainer = getPersistentElementContainer(card)

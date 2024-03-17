@@ -14,7 +14,7 @@ export const CvCard = ({className, title, body}: CvCardProps) => {
             className
         )}>
             <h3 className={cn(
-                "text-lg font-tekst capitalize",
+                "text-lg font-serif capitalize",
                 className
             )} >
                 {title}

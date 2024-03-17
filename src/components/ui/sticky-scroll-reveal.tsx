@@ -50,14 +50,13 @@ export const  StickyScroll = ({
 
         <motion.div
           animate={{
-            background: linearGradients[activeCard % linearGradients.length],
-        
+            // background: linearGradients[activeCard % linearGradients.length],
           }}
           transition={{
             ease: "linear",
             duration: .8
            }}
-         className="w-full h-[27rem] md:h-[24rem] overflow-y-auto flex flex-row-reverse justify-end relative rounded-3xl overflow-hidden p-6 md:p-8 scrollbar-thin scrollbar-thumb-black scrollbar-track-orange-400 border border-transparent dark:border-black/[0.5] group-hover:border-yellow-400/[0.1] mb-4"
+         className="w-full h-[27rem] md:h-[24rem] border border-[#F3F3F3] shadow   bg-gradient-to-bl bg-white  overflow-y-auto flex flex-row-reverse justify-end relative rounded-3xl overflow-hidden p-6 md:p-8 scrollbar-thin scrollbar-thumb-black scrollbar-track-orange-400  mb-4"
           ref={ref}
         >
         
@@ -86,8 +85,8 @@ export const  StickyScroll = ({
                     opacity: activeCard === index ? 1 : .2,
                      }}
                   >
-                      <p className="font-tekst text-sm">{item.city}</p>
-                        <span className="text-black font-tekst uppercase text-sm md:hidden">
+                      <p className="font-serif text-sm">{item.city}</p>
+                        <span className="text-black font-serif uppercase text-sm md:hidden">
                           {item.yearStart} {item.yearEnd}
                         </span>
                       <p className="font-sans text-base">{item.certificate} <br />{item.note} </p>
@@ -114,7 +113,7 @@ export const  StickyScroll = ({
                     animate={{
                       opacity: activeCard === index ? 1 : 0,
                     }}
-                    className="text-black font-tekst uppercase text-lg"
+                    className="text-black font-serif uppercase text-lg"
                   >
                     {item.yearStart} <br />
                     {item.yearEnd}

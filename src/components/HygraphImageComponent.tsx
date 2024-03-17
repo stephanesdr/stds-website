@@ -2,11 +2,13 @@ import { cn } from "@utils/cn";
 import { useEffect, useRef } from "react";
 import simpleParallax from 'simple-parallax-js';
 
+
 function HygraphImageLoader({ src, width }: any) {
     const w = width ?? 300;
     const relativeSrc = (src: any) => src.split('/').pop();
     return `https://media.graphassets.com/resize=width:${w}/${relativeSrc(src)}`;
 }
+
 
 enum Orientation {
     'down' = 'down',
@@ -25,9 +27,8 @@ interface HygraphImageProps {
     alt: string
 }
 
-const HygraphImage = ({ className, style, src, width, height, parallax, parallaxScale = 1.3, parallaxOrientation = Orientation.down, alt, ...rest }: HygraphImageProps) => {
+const HygraphImage = ({ className, style, src, width, height, parallax, parallaxScale = 1.2, parallaxOrientation = Orientation.down, alt, ...rest }: HygraphImageProps) => {
     const imageRef = useRef<HTMLImageElement>(null)
-    
     useEffect(() => {
         let instance: simpleParallax;
         if(parallax && imageRef.current) {
@@ -47,7 +48,9 @@ const HygraphImage = ({ className, style, src, width, height, parallax, parallax
     return <>
         <img
             ref={imageRef}
-            className={cn(className)}
+            className={cn(
+                className,
+                )}
             style={style}
             src={HygraphImageLoader({ src, width })}
             alt={alt}

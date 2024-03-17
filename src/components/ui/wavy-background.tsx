@@ -1,3 +1,4 @@
+"use client"
 import { cn } from "../../utils/cn";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
@@ -8,9 +9,9 @@ export const WavyBackground = ({
   className,
   containerClassName,
   colors,
-  waveWidth = 450,
+  waveWidth = 100,
   backgroundFill = "#FF33EC",
-  blur = 30,
+  blur = 10,
   speed = "slow",
   waveOpacity = 0.6,
   ...props
@@ -117,7 +118,7 @@ export const WavyBackground = ({
 
   let animationId: number;
   const render = () => {
-    ctx.fillStyle = backgroundFill || "#FF3348";
+    ctx.fillStyle = backgroundFill || "white";
     ctx.globalAlpha = waveOpacity || 0.5;
     ctx.fillRect(0, 0, w, h);
     drawWave(3);

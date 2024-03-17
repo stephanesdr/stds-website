@@ -14,9 +14,12 @@ export function updateTheDOMSomehow(data) {
 export function findBlockDescriptionByPath(path, parent = document) {
     return parent.querySelector(`[href="${path}"] > [data-transition-name="project-description"]`)
 }
+export function findBlockCardMediaByPath(path, parent = document) {
+    return parent.querySelector(`[href="${path}"] > [data-transition-name="card-media"]`)
+}
 
 export function findCardByPath(path, parent = document) {
-    return parent.querySelector(`[href="${path}"] .card`)
+    return parent.querySelector(`[href="${path}"]`)
 }
 
 export function getPersistentElement(parent = document) {

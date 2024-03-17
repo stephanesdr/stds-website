@@ -16,7 +16,7 @@ enum HeaderType {
 
 const links = [
 	{ href: "/projects", label: "work" },
-	{ href: "/contact", label: "contact" },
+	{ href: "/about", label: "contact" },
 	{ href: "/cv", label: "CV" },
 ];
 
@@ -29,6 +29,7 @@ const type = ((page) => {
 	return HeaderType.Home;
 
 })(currentPath);
+
 ---
 
 <!doctype html>
@@ -53,7 +54,7 @@ const type = ((page) => {
 				]}
 			>
 				<nav
-					class="flex flex-row items-center flex-wrap justify-between gap-4 p-4"
+					class="flex flex-row items-center flex-wrap justify-between gap-4 py-4"
 					class:list={[{boxed : type !== HeaderType.Project}]}>
 					
 					<div
@@ -63,7 +64,7 @@ const type = ((page) => {
 					>
 
 						<a href="/">
-							<h1 class="font-sans uppercase text-sm">ST.ST <small class="font-serif lowercase text-sm">Designs</small>,</h1>
+							<h1 class="font-sans uppercase text-lg">ST.ST <small class="font-serif lowercase text-base">Designs</small>,</h1>
 						</a>
 
 					</div>
@@ -76,7 +77,7 @@ const type = ((page) => {
 						{
 							links.map((link) => (
 								<li>
-									<a class="font-sans uppercase text-xs" href={link.href}>{link.label}</a>
+									<a class="font-sans uppercase text-sm" href={link.href}>{link.label}</a>
 								</li>
 							))
 						}
@@ -84,7 +85,8 @@ const type = ((page) => {
 				</nav>
 			</header>
 
-            <main class="flex-1 relative">
+		
+            <main class="flex-1 relative with-transition">
                 <slot />
             </main>
 
