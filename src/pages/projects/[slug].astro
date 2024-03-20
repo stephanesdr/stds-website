@@ -33,13 +33,49 @@ try {
 } catch (error) {
 	return Astro.redirect("/404");
 }
+
+
+const query2 = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+        query: `
+      {
+        projects(first: 100) {
+			${projectSchema()}
+        }
+      }`,
+    }),
+};
+
+const response2 = await fetch(import.meta.env.ASTRO_APP_HYGRAPH_ENDPOINT, query2);
+const json2 = await response2.json();
+const projects: Project[] = json2.data.projects;
+
+console.log( ` Mon current project : ${project.slug}`)
+
+const projectsLength = projects.length;
+console.log(` length  :  ${projectsLength}`)
+
+const projectIndex = projects.findIndex(p => p.slug === project.slug);
+console.log(` Test  :  ${projectIndex}`)
+
+const currentProject = projects[projectIndex];
+const nextProject = projects[projectIndex + 1];
+
+console.log(` current ${currentProject}`);
+console.log(` next ${nextProject}`);
+
+
+
 ---
+
+
 
 <Layout title="My main page">
     <div class="project-list boxed w-full flex flex-row justify-start gap-4 dark:bg-stone-800 dark:text-stone-300">
         <!-- left-col -->
         <div class="md:flex-1"></div>
-
         <!-- center-col -->
         <div class="md:flex-[3] relative">
             <div class="card md:max-w-lg flex flex-col mx-auto items-center">
@@ -131,6 +167,47 @@ try {
                     )}
                 </div>
         </div>
+    </section>
+
+    <section>
+
+        {projectIndex !== -1 && projectIndex < (projects.length - 1) &&  (
+            <div class="card md:max-w-lg flex flex-col mx-auto items-center">
+                {nextProject.image &&                                
+                    nextProject.featuredType === "Image" && (
+                        <div class="image-container" data-persist-container="true">
+                            <a href={`/projects/${nextProject.slug}/`} data-name="project__a" >
+                                <img
+                                    class="card-media w-full h-full"
+                                    data-transition-name="card-media"
+                                    data-persist="true"
+                                    src={nextProject.image.url}
+                                    alt={nextProject.image.fileName}
+                                />
+                            </a>
+                        </div>
+                    )                                                                    
+                }
+                {nextProject.image && 
+                    nextProject.featuredType === "Video" && (
+                        <div class="video-container" data-persist-container="true">
+                            <a  href={`/projects/${nextProject.slug}/`} data-name="project__a"  >
+                                <video
+                                    loop
+                                    muted
+                                    autoplay
+                                    class="card-media w-full h-full"
+                                    data-transition-name="card-media"
+                                    data-persist="true"
+                                    >
+                                    <source src={nextProject.image.url} type="video/mp4" />
+                                </video>
+                            </a>
+                        </div>
+                    )
+                }
+            </div>
+        )}
     </section>
         
 

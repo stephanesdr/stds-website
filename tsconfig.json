@@ -9,7 +9,9 @@
       "@stores/*": ["src/stores/*"],
       "@pages/*": ["src/pages/*"],
       "@utils/*": ["src/utils/*"],
-      "@images/*": ["src/images/*"]
+      "@images/*": ["src/images/*"],
+      "@data/*": ["src/data/*"]
+     
     },
     "target": "es6",
     "jsx": "react-jsx",

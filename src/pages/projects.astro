@@ -12,7 +12,7 @@ const query = {
     body: JSON.stringify({
         query: `
       {
-        projects(first: 100) {
+        projects(first: 100, orderBy: priority_DESC) {
 			${projectSchema()}
         }
       }`,
