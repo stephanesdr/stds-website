@@ -61,8 +61,8 @@ const projectIndex = projects.findIndex(p => p.slug === project.slug);
 console.log(` Test  :  ${projectIndex}`)
 
 const currentProject = projects[projectIndex];
-const nextProject = projects[projectIndex + 1];
-
+const nextProject = projects[projectIndex + 1] ?? null;
+console.log(projects.map(p => p.slug).join(', '))
 console.log(` current ${currentProject}`);
 console.log(` next ${nextProject}`);
 
@@ -171,7 +171,7 @@ console.log(` next ${nextProject}`);
 
     <section>
 
-        {projectIndex !== -1 && projectIndex < (projects.length - 1) &&  (
+        { nextProject &&  (
             <div class="card md:max-w-lg flex flex-col mx-auto items-center">
                 {nextProject.image &&                                
                     nextProject.featuredType === "Image" && (
