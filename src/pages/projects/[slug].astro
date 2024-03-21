@@ -176,7 +176,7 @@ console.log(` next ${nextProject}`);
                 {nextProject.image &&                                
                     nextProject.featuredType === "Image" && (
                         <div class="image-container" data-persist-container="true">
-                            <a href={`/projects/${nextProject.slug}/`} data-name="project__a" >
+                            <a href={`/projects/${nextProject.slug}/`} data-name="project__a" data-id={nextProject.id} >
                                 <img
                                     class="card-media w-full h-full"
                                     data-transition-name="card-media"
@@ -191,7 +191,7 @@ console.log(` next ${nextProject}`);
                 {nextProject.image && 
                     nextProject.featuredType === "Video" && (
                         <div class="video-container" data-persist-container="true">
-                            <a  href={`/projects/${nextProject.slug}/`} data-name="project__a"  >
+                            <a  href={`/projects/${nextProject.slug}/`} data-name="project__a" data-id={nextProject.id}  >
                                 <video
                                     loop
                                     muted
