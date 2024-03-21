@@ -19,13 +19,13 @@ type ColumnProps = {
 const rF1 = 1;
 const rF2 = rF1 * 2;
 
-const $isDebug = computed(debug, debug => {
-    return debug == '0' ? false : true 
-})
+// const $isDebug = computed(debug, debug => {
+//     return debug == '0' ? false : true 
+// })
 
 export default function ColumnComponent({ column, scrollYProgress, index }: ColumnProps) {
     const scrollTransformed = useSpring(scrollYProgress, {stiffness:55, damping: 10});
-    const $debug = useStore($isDebug)
+    // const $debug = useStore($isDebug)
     
     const y = useTransform(scrollTransformed, [0, 1],
         column.direction === Direction.Up ? [column.distance * rF2, -column.distance * rF2]
@@ -85,7 +85,7 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
     return <motion.div
         className={cn(
             "project__columns__item", "flex overflow-hidden",
-            $debug ? "border border-blue-500" : ""
+            // $debug ? "border border-blue-500" : ""
         )}
         style={columnStyle}>
 
@@ -95,7 +95,7 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
                 {isImage(column.image) && <HygraphImage
                     className={cn(
                         "project__image",
-                        $debug ? "border border-green-500" : "",
+                        // $debug ? "border border-green-500" : "",
                         "w-full"
                     )}
                     style={objectStyle}
@@ -115,7 +115,7 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
                 {isVideo(column.image) && <HygraphVideo
                     className={cn(
                         "project__video",
-                        $debug ? "border border-green-500" : "",
+                        // $debug ? "border border-green-500" : "",
                         "w-full")}
                     style={objectStyle}
                     parallax={column.parallax}
@@ -133,7 +133,7 @@ export default function ColumnComponent({ column, scrollYProgress, index }: Colu
 
         {column.columnType === ColumnType.Text && <p className={cn(
             "project__text",
-            $debug ? "border border-green-500" : "",
+            // $debug ? "border border-green-500" : "",
             "w-full")} style={objectStyle}>{column.text}</p>}
 
     </motion.div>
