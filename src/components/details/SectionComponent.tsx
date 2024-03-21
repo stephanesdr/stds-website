@@ -14,13 +14,13 @@ type SectionProps = {
     startIndexAt: number
 }
 
-const $isDebug = computed(debug, debug => {
-    return debug == '0' ? false : true 
-})
+// const $isDebug = computed(debug, debug => {
+//     return debug == '0' ? false : true 
+// })
 
 export default function SectionComponent({ section, projectSize, startIndexAt = 0 }: SectionProps) {
     const scrollRef = useRef(null)
-    const $debug = useStore($isDebug)
+    // const $debug = useStore($isDebug)
 
     const [type] = useState("normal");
 
@@ -68,7 +68,7 @@ export default function SectionComponent({ section, projectSize, startIndexAt = 
     const columns = useMemo(() => {
         return <div style={sectionStyle} className={cn(
             "project__columns-wrapper",
-            $debug ? "border border-red-500" : ""
+            // $debug ? "border border-red-500" : ""
         )}>
             <div style={{gap: section.gap}} className={cn("project__columns", "w-full flex flex-col sm:flex-row justify-start items-stretch")}>
                 {section.columns && section.columns.length > 0 && section.columns.map((column, i) => <ColumnComponent
@@ -78,7 +78,7 @@ export default function SectionComponent({ section, projectSize, startIndexAt = 
                     column={column} />)}
             </div>
         </div>
-    }, [section, sectionStyle, startIndexAt, scrollYProgress, $debug])
+    }, [section, sectionStyle, startIndexAt, scrollYProgress])
 
     const size = useMemo(() => {
         if(section.size) return section.size;

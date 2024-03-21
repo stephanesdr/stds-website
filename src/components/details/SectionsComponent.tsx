@@ -16,13 +16,13 @@ const variants = {
     closed: { opacity: 0 }
 }
 
-const $isDebug = computed(debug, debug => {
-    return debug == '0' ? false : true 
-})
+// const $isDebug = computed(debug, debug => {
+//     return debug == '0' ? false : true 
+// })
 
 export default function Sections({ project }: SectionsProps) {
     const [show] = useState(true);
-    const $debug = useStore($isDebug)
+    // const $debug = useStore($isDebug)
 
     const columnIndexes = useMemo(() => {
         const data: any = project.sections.reduce((acc, curr) => {
