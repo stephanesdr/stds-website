@@ -1,13 +1,13 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { CvCard } from "../components/ui/cv-card";
-import { StickyScroll } from "../components/ui/sticky-scroll-reveal";
-import { Boxes } from "../components/ui/background-boxes";
+import Layout from "@layouts/Layout.astro";
+import { CvCard } from "@components/ui/cv-card";
+import { StickyScroll } from "@components/ui/sticky-scroll-reveal";
+import { Boxes } from "@components/ui/background-boxes";
 
-import clients from "../../src/data/clients.json";
-import skills from "../../src/data/skills.json";
-import tools from "../../src/data/tools.json";
-import roadmap from "../../src/data/roadmap.json";
+import clients from "@data/clients.json";
+import skills from "@data/skills.json";
+import tools from "@data/tools.json";
+import roadmap from "@data/roadmap.json";
 import LinkedIn from "@components/utilities/linkedinIcon.astro"
 import Instagram from "@components/utilities/instagramIcon.astro"
 import Thread from "@components/utilities/threadIcon.astro"
@@ -137,7 +137,7 @@ const indexElements: Index[] = json.data.indices;
           </div>
           <div class="flex flex-col">
             {
-              tools.map((tool, index) => (
+              tools.map((tool) => (
                 <p class="text-base font-sans font-semibold text-balance max-w-md">
                   {tool}
                 </p>
