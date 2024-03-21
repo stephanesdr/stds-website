@@ -1,0 +1,21 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ELIFECYCLE",
+    "errno": "ENOENT",
+    "syscall": "spawn",
+    "file": "sh",
+    "pkgid": "astrosite@0.0.1",
+    "stage": "dev",
+    "script": "astro dev",
+    "pkgname": "astrosite",
+    "err": {
+      "name": "Error",
+      "message": "astrosite@0.0.1 dev: `astro dev`\nspawn ENOENT",
+      "code": "ELIFECYCLE",
+      "stack": "Error: astrosite@0.0.1 dev: `astro dev`\nspawn ENOENT\n    at ChildProcess.<anonymous> (/Users/stephane/.node/corepack/pnpm/6.11.0/dist/pnpm.cjs:93073:22)\n    at ChildProcess.emit (node:events:514:28)\n    at maybeClose (node:internal/child_process:1091:16)\n    at ChildProcess._handle.onexit (node:internal/child_process:302:5)"
+    }
+  }
+}
