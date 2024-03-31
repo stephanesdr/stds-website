@@ -48,6 +48,7 @@ export default interface Project {
         priority: boolean
         projectTag: ProjectTag
     }[]
+    team?: string | null
 }
 
 
@@ -79,6 +80,7 @@ export function simpleSchema() {
         image {
             ${assetSchema()}
         }
+        team
     `
 }
 
