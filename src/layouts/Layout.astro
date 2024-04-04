@@ -1,4 +1,5 @@
 ---
+import { cn } from '@utils/cn';
 import '../app.css'
 import '../view-transitions.css'
 import DebugButton from '@components/DebugButton'
@@ -20,8 +21,13 @@ const links = [
 	{ href: "/about", label: "contact" },
 ];
 
+
+
 const { title } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+const pathname = new URL(Astro.request.url).pathname;
+const activePath = pathname.slice(1); // remove the first "/"
 
 const type = ((page) => {
 	if (/^\/?projects$/g.test(page)) return HeaderType.Projects;
@@ -69,19 +75,35 @@ const type = ((page) => {
 
 					</div>
 					<div class="flex-[3]"></div>
-					<ul
+					<div
 						class="flex-1 flex flex-row justify-end items-center gap-4 will-change-transform with-transition"
 						class:list={[{'translate-x-[500px]': type == HeaderType.Project}]}
 						data-transition-name="main-nav-links"
 					>
-						{
-							links.map((link) => (
-								<li>
-									<a class="font-sans uppercase text-sm" href={link.href}>{link.label}</a>
-								</li>
-							))
-						}
-					</ul>
+
+					<a 	href="/projects" 
+						class={cn(
+							"font-sans text-sm font-semibold uppercase",
+							activePath === "projects" ? "underline underline-offset-4" : ""
+						)}>
+						WORK	
+					</a>
+					<a 	href="/cv" 
+						class={cn(
+							"font-sans text-sm font-semibold uppercase",
+							activePath === "cv" ? "underline underline-offset-4" : ""
+						)}>
+						CV	
+					</a>
+					<a 	href="/about" 
+						class={cn(
+							"font-sans text-sm font-semibold uppercase",
+							activePath === "about" ? "underline underline-offset-4" : ""
+						)}>
+						Contact	
+					</a>
+	
+					</div>
 				</nav>
 			</header>
 
@@ -100,6 +122,9 @@ const type = ((page) => {
 
 	</body>
 </html>
+
+
+
 
 <style is:global>
    
