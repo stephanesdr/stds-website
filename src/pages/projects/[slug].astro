@@ -41,7 +41,7 @@ const query2 = {
     body: JSON.stringify({
         query: `
       {
-        projects(first: 100) {
+        projects(first: 100, orderBy: priority_DESC) {
 			${projectSchema()}
         }
       }`,
@@ -166,6 +166,18 @@ console.log(` next ${nextProject}`);
                         </ul>
                     )}
                 </div>
+                {project.website && ( 
+                    <div class="flex flex-row space-x-0.5 mb-2 items-baseline ">
+                        <p class="font-serif text-xs uppercase min-w-24">website</p> 
+                        <a href={`https://${project.website}/ `} target="_blank" class="lowercase">{project.website}</a>
+                    </div>        
+                )}
+                {project.team && ( 
+                    <div class="flex flex-row space-x-0.5 mb-2 items-baseline ">
+                        <p class="font-serif text-xs uppercase min-w-24">team</p> 
+                        <p class="lowercase">{project.team}</p>
+                    </div>        
+                )}
         </div>
     </section>
 
