@@ -1,9 +1,15 @@
 ---
+
+
 import Layout from "@layouts/Layout.astro";
 import type Project from "@interfaces/project";
 import  {schema as projectSchema} from "@interfaces/project";
 import SectionsComponent from "@components/details/SectionsComponent";
 import ProjectDescription from "@components/details/ProjectDescription";
+import BackButton from "@components/ui/back-button";
+
+
+// let test = window.history.back();
 
 const { slug } = Astro.params;
 
@@ -113,8 +119,9 @@ console.log(` next ${nextProject}`);
                     )
                 }
             </div>
-
-            <a href="/projects" class="fixed top-5 left-5 z-[999] inline-flex h-12 w-12 p-4 bg-stone-200 dark:bg-stone-900 rounded-full items-center hover:scale-95 transition-all duration-200 text-lg mix-blend-difference">&larr;</a>
+            
+            <!-- <BackButton client:only="react" onClick={onclick}>&larr;</BackButton> -->
+            <a href="#" onclick="window.history.go(-1); return false;" class="fixed top-5 left-5 z-[999] inline-flex h-12 w-12 p-4 bg-stone-200 dark:bg-stone-900 rounded-full items-center hover:scale-95 transition-all duration-200 text-lg mix-blend-difference">&larr;</a>
 
             <div class="flex flex-col ">
                 <div class="font-sans text-lg max-w-xl text-balance pt-20 pb-10" data-transition-name="project-description">
@@ -221,6 +228,5 @@ console.log(` next ${nextProject}`);
             </div>
         )}
     </section>
-        
-
 </Layout>
+
