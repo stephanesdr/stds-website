@@ -1,106 +1,154 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import type Project from "@interfaces/project";
-import {simpleSchema as projectSchema} from "@interfaces/project";
+import { simpleSchema as projectSchema } from "@interfaces/project";
+import MoreButton from "@components/ui/more-button"
 
-
-
+const pageSize = 3;
 
 const query = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-        query: `
-      {
-        projects(first: 100, orderBy: priority_DESC) {
-			${projectSchema()}
-        }
-      }`,
+        query: `query MyQuery($size: Int) {
+                pages: projectsConnection(first: $size, orderBy: priority_DESC) {
+                    projects: edges {
+                    cursor
+                    project: node {
+                       ${projectSchema()}
+                        }
+                    }
+                    pageInfo {
+                    endCursor
+                    hasNextPage
+                    }
+                  }
+                }
+             `,
+        variables: { size: pageSize },
     }),
 };
 
 const response = await fetch(import.meta.env.ASTRO_APP_HYGRAPH_ENDPOINT, query);
 const json = await response.json();
-const projects: Project[] = json.data.projects;
-
-console.log(projects[8])
+// const projects: Project[] = json.data.projects;
+const {pages} = json.data;
+const hasNext = pages.pageInfo.hasNextPage;
+// console.log(pages.projects[1]);
 ---
 
 <Layout title="My main page">
-    <div class="project-list  w-full flex flex-col justify-center gap-4 dark:bg-stone-800 dark:text-stone-300">
+    <div
+        class="project-list w-full flex flex-col justify-center gap-4 dark:bg-stone-800 dark:text-stone-300"
+    >
         <!-- <div class="flex-1"></div> -->
-        <div class="relative w-full contents ">
-            <div class="w-full relative ">
-                {projects && projects.length > 0 && (
-                    <div class="w-full my-[50px] flex flex-col items-center">
-                        {projects.map((project) => (
-                            <div class="card mx-4 my-[0.5rem] z-50 overflow-clip hover:rounded-3xl shadow-lg hover:shadow-sm flex flex-col justify-center items-center max-w-md">
-                                {project.image &&                                
-                                    project.featuredType === "Image" && (
-                                        <div class="image-container" data-persist-container="true">
-                                            <a href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id}>
-                                                <img
-                                                    loading="lazy"
-                                                    class="card-media w-full h-full"
-                                                    data-transition-name="card-media"
-                                                    data-persist="true"
-                                                    src={project.image.url}
-                                                    alt={project.image.fileName}
-                                                />
-                                            </a>
-                                        </div>
-                                    )                                                                    
-                                }
-                                {project.image && 
-                                    project.featuredType === "Video" && (
-                                        <div class="video-container" data-persist-container="true">
-                                            <a  href={`/projects/${project.slug}/`} data-name="project__a" data-id={project.id} >
-                                                <video
-                                                    loop
-                                                    muted
-                                                    autoplay
-                                                    class="card-media w-full h-full"
-                                                    // data-transition-name="card-media"
-                                                    data-persist="true"
+        <div class="relative w-full contents">
+            <div class="w-full relative">
+                {
+                    pages.projects && pages.projects.length > 0 && (
+                        <div class="w-full my-[50px] flex flex-col items-center">
+                            {pages.projects.map((project: any) => (
+                                <div class="card mx-4 my-[0.5rem] z-50 overflow-clip hover:rounded-3xl shadow-lg hover:shadow-sm flex flex-col justify-center items-center max-w-md">
+                                    {project.project.image &&
+                                        project.project.featuredType === "Image" && (
+                                            <div
+                                                class="image-container"
+                                                data-persist-container="true"
+                                            >
+                                                <a
+                                                    href={`/projects/${project.project.slug}/`}
+                                                    data-name="project__a"
+                                                    data-id={project.project.id}
+                                                >
+                                                    <img
+                                                        loading="lazy"
+                                                        class="card-media w-full h-full"
+                                                        data-transition-name="card-media"
+                                                        data-persist="true"
+                                                        src={project.project.image.url}
+                                                        alt={
+                                                            project.project.image
+                                                                .fileName
+                                                        }
+                                                    />
+                                                </a>
+                                            </div>
+                                        )}
+                                    {project.project.image &&
+                                        project.project.featuredType === "Video" && (
+                                            <div
+                                                class="video-container"
+                                                data-persist-container="true"
+                                            >
+                                                <a
+                                                    href={`/projects/${project.project.slug}/`}
+                                                    data-name="project__a"
+                                                    data-id={project.project.id}
+                                                >
+                                                    <video
+                                                        loop
+                                                        muted
+                                                        autoplay
+                                                        class="card-media w-full h-full"
+                                                        data-transition-name="card-media"
+                                                        data-persist="true"
                                                     >
-                                                    <source src={project.image.url} type="video/mp4" />
-                                                </video>
-                                            </a>
+                                                        <source
+                                                            src={
+                                                                project.project.image
+                                                                    .url
+                                                            }
+                                                            type="video/mp4"
+                                                        />
+                                                    </video>
+                                                </a>
+                                            </div>
+                                        )}
+
+                                    <a href={`/projects/${project.project.slug}/`}>
+                                        <div
+                                            class="font-sans text-lg  text-balance pt-20 pb-10 hidden"
+                                            data-transition-name="project-description"
+                                        >
+                                            {project.project.name},
+                                            <br />
+                                            <p class="text-balance">
+                                                {project.project.excerpt}
+                                            </p>
                                         </div>
-                                    )
-                                }
+                                    </a>
+                                </div>
+                            ))}
+                        </div>
+                        
+                    )
+                }
 
-
-                                <a href={`/projects/${project.slug}/`}>
-                                    <div class="font-sans text-lg  text-balance pt-20 pb-10 hidden" data-transition-name="project-description">
-                                        {project.name},
-                                        <br>
-                                        <p class="text-balance">
-                                            {project.excerpt}
-                                        </p>
-                                    </div>
-                                    
-                                </a>
-                            </div>
-                        ))}
-                    </div>
-                )}
             </div>
+            {
+                pages.pageInfo.hasNextPage && (
+                    <MoreButton
+                        url={import.meta.env.ASTRO_APP_HYGRAPH_ENDPOINT}
+                        size={pageSize}
+                        currentCursor={pages.pageInfo.endCursor}
+                        client:visible
+                        hasNextParam = {hasNext}
+                        
+                    />
+                )
+            }
         </div>
         <div class="flex-1"></div>
     </div>
 </Layout>
 
-
 <style is:global>
-
     .card {
-    transition: all ease-in-out .25s;
-    position: relative;
-  }
+        transition: all ease-in-out 0.25s;
+        position: relative;
+    }
 
     .card:hover {
-    transform: scale(0.97);
-  }
-
+        transform: scale(0.97);
+    }
 </style>
