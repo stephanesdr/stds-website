@@ -152,13 +152,13 @@ console.log(` next ${nextProject}`);
         </div>
         <div class="flex flex-col gap-1">
             <div class="flex flex-row space-x-0.5 mb-2 items-baseline ">
-                <p class="font-serif text-xs uppercase min-w-24">client</p> 
+                <p class="font-sans font-bold text-xs uppercase min-w-24">client</p> 
                 <h3 class="capitalize">{project.client}</h3>
             </div>
             
                 <div class="flex flex-row space-x-0.5 mb-2 items-baseline ">
                     {project.tags && project.tags.length > 1 && (
-                    <p class="font-serif text-xs uppercase min-w-24">services</p> 
+                    <p class="font-sans font-bold text-xs uppercase min-w-24">services</p> 
                         <ul class="flex flex-col font-sans text-sm space-y-0.5">
                             {project.tags.map((tag) => (
                                 <li>{tag.projectTag.name}</li>
@@ -168,13 +168,13 @@ console.log(` next ${nextProject}`);
                 </div>
                 {project.website && ( 
                     <div class="flex flex-row space-x-0.5 mb-2 items-baseline ">
-                        <p class="font-serif text-xs uppercase min-w-24">website</p> 
+                        <p class="font-sans font-bold text-xs uppercase min-w-24">website</p> 
                         <a href={`https://${project.website}/ `} target="_blank" class="lowercase">{project.website}</a>
                     </div>        
                 )}
                 {project.team && ( 
                     <div class="flex flex-row space-x-0.5 mb-2 items-baseline ">
-                        <p class="font-serif text-xs uppercase min-w-24">team</p> 
+                        <p class="font-sans font-bold text-xs uppercase min-w-24">team</p> 
                         <p class="lowercase">{project.team}</p>
                     </div>        
                 )}

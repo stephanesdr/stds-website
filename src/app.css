@@ -4,46 +4,89 @@
 
 @layer base {
 
-    /* Font serif */
-
-    @font-face {
-      font-family: 'Tekst';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url('/fonts/Tekst-DRoman.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'Tekst';
-      font-style: italic;
-      font-weight: 400;
-      font-display: swap;
-      src: url('/fonts/Tekst-DItalic.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'Tekst';
-      font-style: normal;
-      font-weight: 600;
-      font-display: swap;
-      src: url('/fonts/Tekst-DBold.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'Tekst';
-      font-style: italic;
-      font-weight: 600;
-      font-display: swap;
-      src: url('/fonts/Tekst-DBoldItalic.woff2') format('woff2');
-    }
-
     /* Font Sans */
 
     @font-face {
-        font-family: 'Interphase';
+        font-family: 'Aeo';
         font-style: normal;
-        font-weight: 600;
+        font-weight: 400;
         font-display: swap;
-        src: url('/fonts/TTInterphases-demi.woff2') format('woff2');
+        src: url('/fonts/Aeonik-Regular.woff2') format('woff2');
       }
+
+    @font-face {
+        font-family: 'Aeo';
+        font-style: italic;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/Aeonik-RegularItalic.woff2') format('woff2');
+      }
+
+    @font-face {
+        font-family: 'Aeo';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url('/fonts/Aeonik-Medium.woff2') format('woff2');
+      }
+
+    @font-face {
+        font-family: 'Aeo';
+        font-style: italic;
+        font-weight: 500;
+        font-display: swap;
+        src: url('/fonts/Aeonik-MediumItalic.woff2') format('woff2');
+      }
+
+    @font-face {
+        font-family: 'Aeo';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('/fonts/Aeonik-Bold.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Coa';
+        font-style: normal;
+        font-weight: 200;
+        font-display: swap;
+        src: url('/fonts/Coanda-Thin.woff2') format('woff2');
+      }
+
+    @font-face {
+        font-family: 'Coa';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url('/fonts/Coanda-Light.woff2') format('woff2');
+      }
+
+    @font-face {
+        font-family: 'Coa';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/Coanda-Regular.woff2') format('woff2');
+      }
+
+    @font-face {
+        font-family: 'Coa';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('/fonts/Coanda-Bold.woff2') format('woff2');
+      }
+
+    @font-face {
+        font-family: 'Coa';
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url('/fonts/Coanda-Black.woff2') format('woff2');
+      }
+
+
   }
 
 

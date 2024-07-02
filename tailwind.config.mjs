@@ -22,8 +22,8 @@ export default {
                 xl: ['34px', '40px'],
             },
 			fontFamily: {
-				sans: ['Interphase', ...defaultTheme.fontFamily.sans],
-				serif: ['Tekst', ...defaultTheme.fontFamily.serif]
+				sans: ['Aeo', ...defaultTheme.fontFamily.sans],
+				serif: ['Coa', ...defaultTheme.fontFamily.serif]
 			  },
 			  keyframes: {
 				spotlight: {
