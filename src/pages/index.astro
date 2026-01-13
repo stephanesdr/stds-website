@@ -47,7 +47,7 @@ console.log(indexElements[0].image?.url)
 							<div class="flex flex-1 flex-col w-full md:w-4/5 lg:w-3/5 justify-center ">
 								{index.image && (
 									
-										<a href="/projects" class=" h-full md:h-3/5 lg:h-4/6 overflow-hidden rounded-3xl">
+										<div class=" h-full md:h-3/5 lg:h-4/6 overflow-hidden rounded-none">
 											<HygraphVideo
 												className={cn(
 												"w-full h-full object-cover bg-clip-content scale-110 object-center ")}
@@ -57,7 +57,7 @@ console.log(indexElements[0].image?.url)
 												mimeType={index.image.mimeType}
 												client:only="react"
 											/>
-										</a>
+										</div>
 								
 								)}
 							</div>
