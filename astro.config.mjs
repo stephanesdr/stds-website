@@ -9,8 +9,8 @@ import vue from '@astrojs/vue';
 export default defineConfig({
     output: 'server',
     adapter: vercel({
-        // Vercel Serverless supported runtimes: nodejs22.x, nodejs20.x
-        runtime: 'nodejs22.x',
+        // Vercel Serverless supported runtimes: nodejs20.x (stable)
+        runtime: 'nodejs20.x',
     }),
     integrations: [
         react(),
